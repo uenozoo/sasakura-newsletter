@@ -232,7 +232,7 @@ def main():
                     })
                 
                 processed_items.append(item)
-                all_text_context += f"{item['title']}\n"
+                all_text_context += f"Title: {item['title']}\nSummary: {item.get('summary', '')}\nDetail: {item.get('detail', '')}\n---\n"
             
             news_data_processed[category] = processed_items
         else:
