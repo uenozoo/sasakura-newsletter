@@ -22,7 +22,7 @@ def configure_gemini():
         print("警告: GEMINI_API_KEY が設定されていません。AI生成機能はスキップされます。")
         return None
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel('gemini-1.5-pro')
+    return genai.GenerativeModel('gemini-3-flash')
 
 def analyze_news_with_gemini(model, item, category):
     if not model:
