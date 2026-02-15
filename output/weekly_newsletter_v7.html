@@ -1,0 +1,392 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.8; /* 行間さらに広げる */
+                color: #222; /* 文字色を濃く */
+                background-color: #f2f2f7;
+                margin: 0;
+                padding: 0;
+                -webkit-text-size-adjust: 100%;
+                font-size: 18px; /* 全体的に大きく */
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f2f2f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 720px; /* 文字サイズに合わせて幅を広げる */
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 20px;
+                box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #003366 0%, #004488 100%);
+                padding: 50px 40px;
+                text-align: center;
+                color: white;
+            }
+            .brand {
+                font-size: 15px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0.95;
+                margin-bottom: 12px;
+            }
+            .title {
+                font-size: 36px; /* 特大 */
+                font-weight: 800;
+                margin: 0 0 20px 0;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            }
+            .period {
+                font-size: 18px;
+                background-color: rgba(255,255,255,0.2);
+                display: inline-block;
+                padding: 8px 20px;
+                border-radius: 30px;
+                font-weight: 600;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 50px;
+            }
+            
+            /* Sections */
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                margin-top: 60px;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+            }
+            .section-header:first-child {
+                margin-top: 0;
+            }
+            .section-icon {
+                font-size: 28px;
+                margin-right: 15px;
+            }
+            .section-title {
+                font-size: 24px;
+                font-weight: 800;
+                color: #111;
+                letter-spacing: -0.02em;
+            }
+            
+            /* Cards */
+            .card {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 30px;
+            }
+            .summary-card {
+                background-color: #f0f7ff;
+                border: 2px solid #cce4ff;
+                border-left: 6px solid #0056b3;
+            }
+            .proposal-card {
+                background-color: #fffaf0;
+                border: 2px solid #ffeeba;
+                border-left: 6px solid #ff9500;
+            }
+            
+            /* Content Text */
+            .text-content {
+                font-size: 18px;
+                color: #333;
+            }
+            .text-content ul {
+                padding-left: 26px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 15px;
+            }
+            .text-content a {
+                color: #0056b3;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+            
+            /* Chart */
+            .chart-header {
+                font-size: 18px;
+                font-weight: 700;
+                color: #444;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            .chart-container {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 12px;
+                border: 1px solid #ccc;
+            }
+            .source-note {
+                font-size: 13px;
+                color: #666;
+                text-align: right;
+                margin-top: 10px;
+                display: block;
+            }
+
+            /* News Items */
+            .news-card {
+                margin-bottom: 45px;
+                padding: 25px;
+                background-color: #fdfdfd;
+                border: 1px solid #e0e0e0;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            }
+            
+            /* 1. タイトル */
+            .news-title-area {
+                margin-bottom: 15px;
+            }
+            .news-title a {
+                color: #003366;
+                text-decoration: none;
+                font-size: 22px; /* 特大 */
+                font-weight: 800;
+                line-height: 1.4;
+                display: block;
+            }
+            .news-title a:hover {
+                text-decoration: underline;
+                color: #0056b3;
+            }
+            .news-meta {
+                font-size: 14px;
+                color: #666;
+                margin-top: 5px;
+            }
+            
+            /* 2. ポイント */
+            .news-point-area {
+                margin-bottom: 20px;
+            }
+            .point-badge {
+                background-color: #0056b3;
+                color: white;
+                font-size: 12px;
+                font-weight: 800;
+                padding: 4px 10px;
+                border-radius: 4px;
+                vertical-align: middle;
+                margin-right: 8px;
+            }
+            .point-text {
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+                vertical-align: middle;
+            }
+            
+            /* 3. 全体の内容 (詳細) */
+            .news-body-area {
+                background-color: #f5f5f7;
+                padding: 20px;
+                border-radius: 8px;
+                font-size: 16px; /* 本文は少し抑えめに */
+                color: #444;
+                line-height: 1.8;
+                border-left: 4px solid #ccc;
+            }
+
+            /* Glossary */
+            .glossary-dl { margin: 0; }
+            .glossary-dt {
+                font-weight: 800;
+                font-size: 18px;
+                margin-top: 20px;
+                color: #222;
+                border-bottom: 1px dashed #ccc;
+                padding-bottom: 4px;
+                display: inline-block;
+            }
+            .glossary-dd {
+                font-size: 16px;
+                color: #555;
+                margin-left: 0;
+                margin-top: 8px;
+                line-height: 1.8;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: #222;
+                color: #ccc;
+                text-align: center;
+                padding: 50px 20px;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+            .footer a { color: #fff; text-decoration: none; font-weight: bold; }
+            .footer a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2025/12/29 ～ 2026/01/04</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content">
+                        <ul><li><b>2025年の好調と2026年の課題:</b> 昨年の市場拡大は再開発主導でしたが、本年は資材高騰対策が必須です。高付加価値製品（AI活用やデザイン重視製品）へのシフトが急務です。</li><li><b>「消す」から「デザインする」へ:</b> 騒音対策技術のトレンドが、単なる減衰から「空間の音環境を整える」方向へ進化しています。設計事務所への提案キーワードは「サウンドスケープ」です。</li></ul>
+                    </div>
+                    
+                    <!-- 2. Visual Data (Chart / Diagram) -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">Visual Data</div>
+                    </div>
+                    <div class="card">
+                        <div class="chart-header">今週のデータ・ピックアップ</div>
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22radar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22%5Cu9a12%5Cu97f3%22%2C+%22%5Cu632f%5Cu52d5%22%2C+%22%5Cu60aa%5Cu81ed%22%2C+%22%5Cu7c89%5Cu5875%22%2C+%22%5Cu6c34%5Cu8cea%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%222025%5Cu5e74+%5Cu82e6%5Cu60c5%5Cu767a%5Cu751f%5Cu30ea%5Cu30b9%5Cu30af%22%2C+%22data%22%3A+%5B90%2C+60%2C+30%2C+50%2C+20%5D%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+149%2C+0%2C+0.4%29%22%2C+%22borderColor%22%3A+%22%23ff9500%22%2C+%22pointBackgroundColor%22%3A+%22%23ff9500%22%7D%2C+%7B%22label%22%3A+%22%5Cu5bfe%5Cu7b56%5Cu5f8c%5Cu306e%5Cu4f4e%5Cu6e1b%5Cu76ee%5Cu6a19%22%2C+%22data%22%3A+%5B40%2C+30%2C+20%2C+30%2C+20%5D%2C+%22backgroundColor%22%3A+%22rgba%280%2C+86%2C+179%2C+0.4%29%22%2C+%22borderColor%22%3A+%22%230056b3%22%2C+%22pointBackgroundColor%22%3A+%22%230056b3%22%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu5efa%5Cu8a2d%5Cu73fe%5Cu5834%5Cu306b%5Cu304a%5Cu3051%5Cu308b%5Cu74b0%5Cu5883%5Cu30ea%5Cu30b9%5Cu30af%5Cu4f4e%5Cu6e1b%5Cu52b9%5Cu679c+%28%5Cu30a4%5Cu30e1%5Cu30fc%5Cu30b8%29%22%2C+%22fontSize%22%3A+20%7D%2C+%22scale%22%3A+%7B%22ticks%22%3A+%7B%22beginAtZero%22%3A+true%2C+%22max%22%3A+100%7D%7D%7D%7D&w=500&h=300&bkg=white" alt="Visual Data" class="chart-img">
+                            <span class="source-note">Source: 独自推計および業界統計より</span>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content">
+                        <ul><li><b>年始の挨拶回りで「トレンド共有」:</b> 設計事務所への年始挨拶時に、単なるカレンダー配布だけでなく、「2026年は音環境デザインが来ます」というトークテーマで、当社のハイエンド製品（意匠性ルーバー等）のカタログを手渡してください。</li><li><b>新技術勉強会の実施:</b> AI音響制御などの最新技術は顧客側の関心も高いです。技術部と連携し、顧客向けのミニ勉強会をオンラインで開催する提案をしてみましょう。</li></ul>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事</div>
+                    </div>
+    <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <!-- 1. Title -->
+                <div class="news-title-area">
+                    <div class="news-title"><a href="https://www.nikkei.com/article/DGXZQ..." target="_blank">2025年 防音市場総括：都市再開発が牽引し過去最高益へ</a></div>
+                    <div class="news-meta">2025年12月30日 | 日本経済新聞</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">2025年の防音建材市場は、首都圏の大型再開発ラッシュにより大幅な伸びを記録しました。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    日本建材産業協会の年末レポートによると、2025年の防音・遮音関連市場は前年比108%で推移しました。特に注目すべきは、「オフィス内会議ブース」向けの吸音パネルと、高層ビル空調向けの「高性能サイレンサー」です。<br>一方で、資材高騰の影響で利益率は微減傾向にあり、2026年は価格転嫁の成否が焦点となると分析されています。
+                </div>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">注目製品・技術</h3>
+            <div class="news-card">
+                <!-- 1. Title -->
+                <div class="news-title-area">
+                    <div class="news-title"><a href="https://av.watch.impress.co.jp/..." target="_blank">AIが騒音を「心地よい音」に変換？ 新技術の特許公開</a></div>
+                    <div class="news-meta">2026年1月02日 | AV Watch</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">不快な工事騒音を、ホワイトノイズ等のマスキング音で中和する能動的音響制御技術が発表されました。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    従来のアクティブノイズコントロール(ANC)は逆位相の波で音を「消す」ものでしたが、今回公開された特許技術は、不快な周波数成分だけを解析し、人間の脳がリラックスする周波数を付加することで「気にならなくする」というアプローチです。<br>建設現場の防音壁スピーカーとしての応用が検討されており、現在ゼネコンと共同実験中です。
+                </div>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">顧客・競合動向</h3>
+            <div class="news-card">
+                <!-- 1. Title -->
+                <div class="news-title-area">
+                    <div class="news-title"><a href="https://kenplatz.nikkeibp.co.jp/..." target="_blank">大手設計事務所、2026年の重点テーマに「音環境デザイン」を掲げる</a></div>
+                    <div class="news-meta">2026年1月04日 | 日経アーキテクチュア</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">日建設計と三菱地所設計が、新年の社長訓示で「五感に訴える空間設計」を強調しました。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    ポストコロナのオフィスには、単なる機能性だけでなく「行きたくなる場所」としての快適性が求められています。<br>その中で「音環境（Soundscape）」は最重要項目の一つとされ、設計段階からの音響シミュレーション導入が標準化される見込みです。これは当社のような専門メーカーにとって、上流工程からスペックインする絶好の機会と言えます。
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt">サウンドスケープ (Soundscape)</dt>
+                <dd class="glossary-dd">「音の風景」。騒音を単に排除するだけでなく、その場所固有の音環境を資源として捉え、快適な空間を創造しようとする考え方。</dd>
+            
+                <dt class="glossary-dt">マスキング効果</dt>
+                <dd class="glossary-dd">ある音が別の音によって聞こえにくくなる現象。空調音などで会話漏れを防ぐサウンドマスキングシステムなどがオフィスで普及している。</dd>
+            
+            </dl>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                Sasakura Engineering Co., Ltd.<br>
+                Sales Support System<br>
+                <br>
+                <a href="#" target="_blank">バックナンバー</a> | <a href="#" target="_blank">配信停止</a>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    

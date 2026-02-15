@@ -1,0 +1,464 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.8;
+                color: #222;
+                background-color: #f2f2f7;
+                margin: 0;
+                padding: 0;
+                -webkit-text-size-adjust: 100%;
+                font-size: 18px;
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f2f2f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 20px;
+                box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #003366 0%, #004488 100%);
+                padding: 50px 40px;
+                text-align: center;
+                color: white;
+            }
+            .brand {
+                font-size: 15px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0.95;
+                margin-bottom: 12px;
+            }
+            .title {
+                font-size: 36px;
+                font-weight: 800;
+                margin: 0 0 20px 0;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            }
+            .period {
+                font-size: 18px;
+                background-color: rgba(255,255,255,0.2);
+                display: inline-block;
+                padding: 8px 20px;
+                border-radius: 30px;
+                font-weight: 600;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 50px;
+            }
+            
+            /* Sections */
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                margin-top: 60px;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+            }
+            .section-header:first-child {
+                margin-top: 0;
+            }
+            .section-icon {
+                font-size: 28px;
+                margin-right: 15px;
+            }
+            .section-title {
+                font-size: 24px;
+                font-weight: 800;
+                color: #111;
+                letter-spacing: -0.02em;
+            }
+            
+            /* Cards */
+            .card {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 30px;
+            }
+            .summary-card {
+                background-color: #f0f7ff;
+                border: 2px solid #cce4ff;
+                border-left: 6px solid #0056b3;
+            }
+            .proposal-card {
+                background-color: #fffaf0;
+                border: 2px solid #ffeeba;
+                border-left: 6px solid #ff9500;
+            }
+            
+            /* Content Text */
+            .text-content {
+                font-size: 18px;
+                color: #333;
+            }
+            .text-content ul {
+                padding-left: 26px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 15px;
+            }
+            .text-content a {
+                color: #0056b3;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+
+            /* Reference Box */
+            .reference-box {
+                margin-top: 20px;
+                padding-top: 15px;
+                border-top: 1px dashed #ccc;
+                font-size: 14px;
+                color: #666;
+            }
+            .ref-label {
+                font-weight: 700;
+                color: #444;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .reference-box ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+            .reference-box li {
+                margin-bottom: 3px;
+            }
+            
+            /* Chart */
+            .chart-header {
+                font-size: 18px;
+                font-weight: 700;
+                color: #444;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            .chart-container {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 12px;
+                border: 1px solid #ccc;
+            }
+            .source-note {
+                font-size: 13px;
+                color: #666;
+                text-align: right;
+                margin-top: 10px;
+                display: block;
+            }
+
+            /* News Items */
+            .news-card {
+                margin-bottom: 45px;
+                padding: 25px;
+                background-color: #fdfdfd;
+                border: 1px solid #e0e0e0;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            }
+            
+            .news-title-area {
+                margin-bottom: 15px;
+            }
+            .news-title {
+                color: #003366;
+                font-size: 22px; 
+                font-weight: 800;
+                line-height: 1.4;
+            }
+            /* No link on title anymore */
+            
+            .news-meta {
+                font-size: 14px;
+                color: #666;
+                margin-top: 5px;
+            }
+            
+            .news-point-area {
+                margin-bottom: 20px;
+            }
+            .point-badge {
+                background-color: #0056b3;
+                color: white;
+                font-size: 12px;
+                font-weight: 800;
+                padding: 4px 10px;
+                border-radius: 4px;
+                vertical-align: middle;
+                margin-right: 8px;
+            }
+            .point-text {
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+                vertical-align: middle;
+            }
+            
+            .news-body-area {
+                background-color: #f5f5f7;
+                padding: 20px;
+                border-radius: 8px;
+                font-size: 16px;
+                color: #444;
+                line-height: 1.8;
+                border-left: 4px solid #ccc;
+                margin-bottom: 20px;
+            }
+
+            /* News Links */
+            .news-links-area {
+                text-align: right;
+                font-size: 14px;
+            }
+            .link-btn {
+                display: inline-block;
+                padding: 6px 14px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                margin-left: 8px;
+                transition: background-color 0.2s;
+            }
+            .link-btn-primary {
+                background-color: #0056b3;
+                color: white;
+                border: 1px solid #0056b3;
+            }
+            .link-btn-secondary {
+                background-color: #fff;
+                color: #666;
+                border: 1px solid #ccc;
+            }
+            .link-btn:hover {
+                opacity: 0.8;
+                text-decoration: none;
+            }
+
+            /* Glossary */
+            .glossary-dl { margin: 0; }
+            .glossary-dt {
+                font-weight: 800;
+                font-size: 18px;
+                margin-top: 25px;
+                color: #222;
+                border-bottom: 1px dashed #ccc;
+                padding-bottom: 4px;
+                display: inline-block;
+            }
+            .glossary-dt a {
+                color: #222;
+                text-decoration: none;
+            }
+            .glossary-dt a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+            .glossary-dd {
+                font-size: 16px;
+                color: #555;
+                margin-left: 0;
+                margin-top: 8px;
+                line-height: 1.8;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: #222;
+                color: #ccc;
+                text-align: center;
+                padding: 50px 20px;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+            .footer a { color: #fff; text-decoration: none; font-weight: bold; }
+            .footer a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2025/12/15 ～ 2025/12/21</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content">
+                        <ul><li><b>法改正の足音:</b> 国交省の遮音基準見直しは、業界にとって数年に一度のビッグウェーブです。今のうちからデベロッパーの設計部に対し、「新基準対応予定」を謳った製品提案を行うべきです。</li><li><b>換気×防音のジレンマ解消:</b> 海外の「アクティブ・ウィンドウ」のような技術は、当社のパッシブ換気消音機（サイレンサーダクト）と競合する可能性がありますが、コスト面ではまだ当社に分があります。差別化ポイントを整理しておきましょう。</li></ul>
+                        <div class="reference-box"><span class="ref-label">References:</span><ul><li><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk_0000.html" target="_blank">建築基準法 改定検討会 議事録</a></li></ul></div>
+                    </div>
+                    
+                    <!-- 2. Visual Data (Chart / Diagram) -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">Visual Data</div>
+                    </div>
+                    <div class="card">
+                        <div class="chart-header">今週のデータ・ピックアップ</div>
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22line%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%222021%22%2C+%222022%22%2C+%222023%22%2C+%222024%22%2C+%222025%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22%5Cu5168%5Cu56fd%5Cu9a12%5Cu97f3%5Cu82e6%5Cu60c5%5Cu4ef6%5Cu6570+%28%5Cu5343%5Cu4ef6%29%22%2C+%22data%22%3A+%5B18.5%2C+19.2%2C+21.0%2C+22.5%2C+24.1%5D%2C+%22borderColor%22%3A+%22%230056b3%22%2C+%22fill%22%3A+false%2C+%22tension%22%3A+0.1%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu9a12%5Cu97f3%5Cu82e6%5Cu60c5%5Cu4ef6%5Cu6570%5Cu306e%5Cu63a8%5Cu79fb+%28%5Cu30b3%5Cu30ed%5Cu30ca%5Cu798d%5Cu4ee5%5Cu964d%5Cu306e%5Cu6025%5Cu5897%29%22%2C+%22fontSize%22%3A+16%7D%7D%7D&w=500&h=300&bkg=white" alt="Visual Data" class="chart-img">
+                            <span class="source-note">Source: 独自推計および業界統計より</span>
+                        </div>
+                        <div class="reference-box"><span class="ref-label">References:</span><ul><li><a href="https://www.soumu.go.jp/kouchoi/knowledge/faq/index.html" target="_blank">総務省 公害等調整委員会 年次報告</a></li></ul></div>
+                    </div>
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content">
+                        <ul><li><b>「新基準勉強会」の講師派遣:</b> お付き合いのある管理会社や設計事務所に対し、「変わりゆく遮音基準」をテーマにした出張勉強会をオファーしましょう。情報の早さが信頼に繋がります。</li><li><b>競合製品比較表の更新:</b> 三菱電機のAIアプリのような「ソフト面での付加価値」に対抗するため、当社の測定サービス（人による診断）の「柔軟性」や「解決提案力」をアピールする資料を作成します。</li></ul>
+                        <div class="reference-box"><span class="ref-label">References:</span><ul><li><a href="http://server/share/slide_template_v2.pptx" target="_blank">勉強会向けスライド資料テンプレート (社内)</a></li></ul></div>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事</div>
+                    </div>
+    <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">国土交通省、建築基準法の「遮音性能基準」を2026年度に改定検討</div>
+                    <div class="news-meta">2025年12月16日 | 国交省 報道発表資料</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">集合住宅の界壁における遮音性能基準について、実態に即した測定方法への見直しと等級区分の厳格化が議論されています。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    現行の等級基準（D値）に加え、重量床衝撃音（L値）の評価基準も見直される見通しです。<br>これが施行されれば、マンションデベロッパーはより高スペックな防音床材の採用を迫られることになり、当社の「高機能遮音フロアシステム」の引き合い増が見込まれます。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    <a href="https://www.mlit.go.jp/report/press/house05_hh_000958.html" target="_blank" class="link-btn link-btn-primary">記事を読む ⧉</a><a href="https://www.mlit.go.jp/" target="_blank" class="link-btn link-btn-secondary">予備リンク(Top) ⧉</a><a href="https://www.bcj.or.jp/" target="_blank" class="link-btn link-btn-secondary">参考資料 ⧉</a>
+                </div>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">注目製品・技術</h3>
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">海外スタートアップ、窓を開けたまま騒音を消す「アクティブ・ウィンドウ」を発表</div>
+                    <div class="news-meta">2025年12月18日 | TechCrunch Japan (Cached)</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">【リンク切れのため要約のみ】窓枠に取り付けたスピーカーから逆位相音を出し、換気をしつつ外部騒音を最大10dB低減する技術。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    （元記事へのリンクが無効になっているため、アーカイブ情報を記載します）<br>シンガポールの大学発ベンチャーが開発。マイクとスピーカーを内蔵した格子状のユニットを窓に取り付けることで、空気の通り道を確保しながら音波だけを打ち消す仕組みです。<br>日本国内での販売代理店は未定ですが、換気ニーズの高い病院や学校施設での採用が期待されています。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">三菱電機、空調室外機の騒音を「音響解析AI」で特定・低減する新サービス</div>
+                    <div class="news-meta">2025年12月19日 | 三菱電機 ニュースリリース</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">工場やビルの室外機から発生する異音の原因を、AIがスマホ録音音源から即座に特定し、最適な防音カバーを提案するアプリを法人向けに公開。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    従来は熟練工が聴感で判断していた故障予兆や共振音を、AIが90%以上の精度で判別可能とのこと。<br>メンテナンス業務の効率化だけでなく、騒音トラブルの早期解決ツールとして管理会社への導入が進むでしょう。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    <a href="https://www.mitsubishielectric.co.jp/news/2025/1219.html" target="_blank" class="link-btn link-btn-primary">記事を読む ⧉</a><a href="https://www.mitsubishielectric.co.jp/" target="_blank" class="link-btn link-btn-secondary">予備リンク(Top) ⧉</a>
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt"><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr_0000.html" target="_blank">界壁 (Separating Wall) ⧉</a></dt>
+                <dd class="glossary-dd">集合住宅において、隣り合う住戸を区切る壁のこと。遮音性能（隣の音が聞こえないこと）と耐火性能が法律で厳しく義務付けられている。</dd>
+            
+                <dt class="glossary-dt"><a href="https://www.jvia.or.jp/knowledge/index.html" target="_blank">L値 (Floor Impact Sound Level) ⧉</a></dt>
+                <dd class="glossary-dd">床衝撃音レベル。上の階で物を落としたり歩いたりした時の音が、下の階でどれくらいの大きさで聞こえるかを表す等級。数字が小さいほど性能が良い（静か）。</dd>
+            
+            </dl>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                Sasakura Engineering Co., Ltd.<br>
+                Sales Support System<br>
+                <br>
+                <a href="#" target="_blank">バックナンバー</a> | <a href="#" target="_blank">配信停止</a>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    

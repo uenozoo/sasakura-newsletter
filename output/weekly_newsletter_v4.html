@@ -1,0 +1,337 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                line-height: 1.6;
+                color: #1d1d1f; /* Apple's near-black */
+                background-color: #f5f5f7; /* Apple's light gray background */
+                margin: 0;
+                padding: 0;
+                -webkit-font-smoothing: antialiased;
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f5f5f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 680px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 18px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background-color: #ffffff;
+                padding: 40px 40px 20px 40px;
+                text-align: left;
+                border-bottom: 1px solid #e5e5e5;
+            }
+            .brand {
+                font-size: 12px;
+                font-weight: 700;
+                color: #86868b;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 5px;
+            }
+            .title {
+                font-size: 28px;
+                font-weight: 700;
+                color: #1d1d1f;
+                margin: 0;
+                letter-spacing: -0.01em;
+            }
+            .date {
+                font-size: 14px;
+                color: #86868b;
+                margin-top: 5px;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 40px;
+            }
+            
+            /* Section Styling */
+            .section {
+                margin-bottom: 50px;
+            }
+            .section-title {
+                font-size: 20px;
+                font-weight: 600;
+                color: #1d1d1f;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+            }
+            .section-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                background-color: #0071e3; /* Apple Blue */
+                color: white;
+                border-radius: 50%;
+                margin-right: 12px;
+                font-size: 16px;
+            }
+            
+            /* Card/Box Styling */
+            .card {
+                background-color: #f9f9f9;
+                border-radius: 12px;
+                padding: 24px;
+                margin-bottom: 24px;
+            }
+            .highlight-card {
+                background-color: #f0f8ff;
+                border-radius: 12px;
+                padding: 24px;
+                border-left: 4px solid #0071e3;
+            }
+            .text-content {
+                font-size: 16px;
+                color: #333;
+            }
+            .text-content ul {
+                padding-left: 20px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 10px;
+            }
+            
+            /* News Items */
+            .news-item {
+                margin-bottom: 30px;
+            }
+            .news-title {
+                font-size: 18px;
+                font-weight: 600;
+                line-height: 1.4;
+                margin-bottom: 8px;
+            }
+            .news-title a {
+                color: #0071e3;
+                text-decoration: none;
+            }
+            .news-title a:hover {
+                text-decoration: underline;
+            }
+            .news-meta {
+                font-size: 12px;
+                color: #86868b;
+                margin-bottom: 12px;
+            }
+            .news-summary {
+                font-size: 15px;
+                color: #424245;
+                line-height: 1.6;
+                padding-left: 14px;
+                border-left: 2px solid #d2d2d7;
+            }
+            
+            /* Chart/Visual Placeholder */
+            .visual-container {
+                background-color: #ffffff;
+                border: 1px solid #e5e5e5;
+                border-radius: 12px;
+                padding: 20px;
+                margin: 20px 0;
+                text-align: center;
+            }
+            .bar-chart {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-around;
+                height: 150px;
+                padding-top: 20px;
+                margin-bottom: 10px;
+            }
+            .bar {
+                width: 40px;
+                background-color: #0071e3;
+                border-radius: 4px 4px 0 0;
+                position: relative;
+                transition: height 0.5s;
+            }
+            .bar-label {
+                font-size: 11px;
+                color: #86868b;
+                margin-top: 8px;
+                text-align: center;
+            }
+            .chart-title {
+                font-size: 14px;
+                font-weight: 600;
+                color: #1d1d1f;
+                margin-bottom: 15px;
+            }
+            
+            /* Glossary */
+            .glossary-item {
+                font-size: 14px;
+                margin-bottom: 12px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 12px;
+            }
+            .term {
+                font-weight: 700;
+                color: #1d1d1f;
+                display: inline-block;
+                min-width: 120px;
+            }
+            .definition {
+                color: #666;
+            }
+            
+            /* Footer */
+            .footer {
+                background-color: #f5f5f7;
+                padding: 40px;
+                text-align: center;
+                font-size: 12px;
+                color: #86868b;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">Weekly Industry Pulse</h1>
+                    <div class="date">2026年02月15日 | Vol.4</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section">
+                        <div class="section-title">
+                            <span class="section-icon">📝</span>
+                            市場・業界動向まとめ
+                        </div>
+                        <div class="highlight-card text-content">
+                            <ul><li><b>リニューアル市場の活性化:</b> 「新築」から「維持更新」へ建設投資の軸足が移りつつあります。既存ダクトの消音性能アップグレード提案が刺さる時期です。</li><li><b>DC地方分散のリスクと機会:</b> 静かな環境へのDC建設は、より厳しい騒音基準（環境基準）のクリアを求められます。高性能サイレンサーのスペックインの好機です。</li></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 2. Visuals -->
+                    <div class="section"><div class="section-title"><span class="section-icon">📊</span>データで見るトレンド</div><div class="visual-container">
+    <div class="chart-title">建設投資・防音工事 需要予測 (指数)</div>
+    <div class="bar-chart">
+        <div style="text-align:center;">
+            <div class="bar" style="height: 60px; background-color: #d2d2d7;"></div>
+            <div class="bar-label">2024</div>
+        </div>
+        <div style="text-align:center;">
+            <div class="bar" style="height: 80px; background-color: #8faadd;"></div>
+            <div class="bar-label">2025</div>
+        </div>
+        <div style="text-align:center;">
+            <div class="bar" style="height: 110px; background-color: #0071e3;"></div>
+            <div class="bar-label">2026(予)</div>
+        </div>
+        <div style="text-align:center;">
+            <div class="bar" style="height: 130px; background-color: #0056b3;"></div>
+            <div class="bar-label">2027(予)</div>
+        </div>
+    </div>
+    <p style="text-align:center; font-size:11px; color:#86868b; margin-top:10px;">※リニューアル工事における防音建材需要（当社独自推計）</p>
+    </div></div>
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section">
+                        <div class="section-title">
+                            <span class="section-icon">🚀</span>
+                            営業アクション提案
+                        </div>
+                        <div class="card text-content">
+                            <ul><li><b>既存顧客への「防音診断」DM送付:</b> 竣工後10年以上経過した物件オーナーに対し、経年劣化による遮音性能低下の無料診断をオファーし、更新需要を掘り起こしましょう。</li><li><b>メタマテリアル技術の情報収集:</b> まだ実用化段階ですが、将来的な競合技術になる可能性があります。技術部と連携し、当社製品との優位性比較資料を準備してください。</li></ul>
+                        </div>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #e5e5e5; margin: 40px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-title">
+                        <span class="section-icon">📰</span>
+                        ピックアップ記事
+                    </div>
+    <h3 style="font-size: 16px; color: #86868b; margin-top: 30px; text-transform: uppercase; letter-spacing: 0.05em;">業界動向・市場予測</h3>
+            <div class="news-item">
+                <div class="news-title"><a href="#">2026年の建設投資見通し、リニューアル工事が堅調に推移</a></div>
+                <div class="news-meta">2026年1月20日 • 建設通信新聞</div>
+                <div class="news-summary">
+                    国土交通省の発表によると、新設着工は横ばいですが、既存ビルの改修・設備更新需要が前年比増。特に環境性能（省エネ・遮音）向上がカギとなります。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><a href="#">データセンター立地、地方分散が加速。騒音トラブル未然防止が課題</a></div>
+                <div class="news-meta">2026年1月22日 • 日経クロステック</div>
+                <div class="news-summary">
+                    首都圏から地方へのDC分散に伴い、静穏な環境への建設事例が増加。地域住民との合意形成において、冷却設備の騒音対策が最重要項目となっています。
+                </div>
+            </div>
+            <h3 style="font-size: 16px; color: #86868b; margin-top: 30px; text-transform: uppercase; letter-spacing: 0.05em;">注目製品・技術</h3>
+            <div class="news-item">
+                <div class="news-title"><a href="#">メタマテリアル吸音材、産業機器への実装進む</a></div>
+                <div class="news-meta">2026年1月23日 • 日刊工業新聞</div>
+                <div class="news-summary">
+                    従来のグラスウールでは吸音しにくい低周波音を、薄型軽量のメタマテリアル構造で制御する技術の実証実験が公開されました。
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #e5e5e5; margin: 40px 0;">
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">📚</span>
+                業界用語解説
+            </div>
+            <div class="card">
+        
+            <div class="glossary-item">
+                <span class="term">メタマテリアル (Metamaterials)</span>
+                <span class="definition">自然界にはない物理的特性を持つように人工的に設計された物質。音波を自在に制御できるため、薄くても高い遮音・吸音性能を発揮する次世代素材として注目されています。</span>
+            </div>
+            
+            <div class="glossary-item">
+                <span class="term">低周波音</span>
+                <span class="definition">100Hz以下の低い音。重低音や振動として感じられ、一般的な防音壁では防ぎにくい。専用の吸音構造やANCが必要になることが多い。</span>
+            </div>
+            
+            <div class="glossary-item">
+                <span class="term">環境アセスメント</span>
+                <span class="definition">大規模な開発事業などが環境に与える影響を事前に調査・予測・評価すること。騒音予測はこの重要な項目の一つ。</span>
+            </div>
+            
+            </div>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                <p>株式会社ササクラ・エーイー 営業支援システム</p>
+                <p>&copy; 2026 Sasakura AE. All rights reserved.</p>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    

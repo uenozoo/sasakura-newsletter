@@ -1,0 +1,347 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noise Control Industry Weekly</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #f2f2f7;
+                margin: 0;
+                padding: 0;
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f2f2f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 640px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #003366 0%, #0056b3 100%);
+                padding: 40px 30px;
+                text-align: center;
+                color: white;
+            }
+            .brand {
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0.8;
+                margin-bottom: 10px;
+            }
+            .title {
+                font-size: 26px;
+                font-weight: 800;
+                margin: 0 0 10px 0;
+                letter-spacing: -0.5px;
+            }
+            .period {
+                font-size: 14px;
+                background-color: rgba(255,255,255,0.2);
+                display: inline-block;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-weight: 500;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 30px;
+            }
+            
+            /* Sections */
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                margin-top: 40px;
+            }
+            .section-header:first-child {
+                margin-top: 0;
+            }
+            .section-icon {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+            .section-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: #111;
+                letter-spacing: -0.01em;
+            }
+            
+            /* Cards */
+            .card {
+                background-color: #fff;
+                border: 1px solid #e1e1e6;
+                border-radius: 12px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            .summary-card {
+                background-color: #f5f9ff;
+                border: none;
+                border-left: 4px solid #0056b3;
+            }
+            .proposal-card {
+                background-color: #fffbf0;
+                border: none;
+                border-left: 4px solid #ff9500;
+            }
+            
+            /* Content Text */
+            .text-content {
+                font-size: 15px;
+                color: #444;
+            }
+            .text-content ul {
+                padding-left: 20px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 8px;
+            }
+            
+            /* Chart */
+            .chart-container {
+                text-align: center;
+                margin: 20px 0;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                border: 1px solid #eee;
+            }
+            .source-note {
+                font-size: 10px;
+                color: #888;
+                text-align: right;
+                margin-top: 5px;
+                display: block;
+            }
+
+            /* Stock Watch */
+            .stock-grid {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+            }
+            .stock-item {
+                flex: 1;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-radius: 8px;
+                text-align: center;
+            }
+            .stock-name { font-size: 12px; font-weight: bold; color: #555; display: block; }
+            .stock-price { font-size: 16px; font-weight: 800; color: #333; display: block; margin: 5px 0; }
+            .stock-change { font-size: 12px; font-weight: bold; }
+            .plus { color: #34c759; }
+            .minus { color: #ff3b30; }
+            
+            /* News Items */
+            .news-card {
+                margin-bottom: 25px;
+                padding-bottom: 25px;
+                border-bottom: 1px solid #eee;
+            }
+            .news-title a {
+                color: #0056b3;
+                text-decoration: none;
+                font-size: 17px;
+                font-weight: 700;
+                line-height: 1.4;
+                display: block;
+                margin-bottom: 6px;
+            }
+            .news-meta {
+                font-size: 12px;
+                color: #888;
+                margin-bottom: 10px;
+            }
+            .news-comment {
+                background-color: #f7f7f7;
+                padding: 12px;
+                border-radius: 6px;
+                font-size: 13px;
+                color: #555;
+                font-style: italic;
+            }
+            .comment-label {
+                font-weight: bold;
+                font-style: normal;
+                color: #333;
+                font-size: 11px;
+                text-transform: uppercase;
+                margin-right: 5px;
+            }
+            
+            /* Glossary */
+            .glossary-dl {
+                margin: 0;
+            }
+            .glossary-dt {
+                font-weight: 700;
+                font-size: 14px;
+                margin-top: 12px;
+                color: #333;
+            }
+            .glossary-dd {
+                font-size: 13px;
+                color: #666;
+                margin-left: 0;
+                margin-top: 4px;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: #333;
+                color: #ccc;
+                text-align: center;
+                padding: 30px;
+                font-size: 11px;
+            }
+            .footer a { color: #fff; }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Noise Control Industry Weekly</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2026/01/12 ～ 2026/01/18</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content">
+                        <ul><li><b>規制強化の動き:</b> 環境省による低周波音対策の指針見直しは、当社の高性能サイレンサーや防音エンクロージャの需要喚起に直結します。<a href='https://www.env.go.jp/' target='_blank'>[環境省HP]</a></li><li><b>データセンター特需:</b> 日本ピラー工業等の競合もDC向け新製品で攻勢を強めています。差別化のためには「低周波対応」を前面に出すべきです。</li><li><b>現場DXの加速:</b> ゼネコンの「騒音見える化」ニーズに対し、当社の測定技術やコンサルティングサービスをセット販売するチャンスです。</li></ul>
+                    </div>
+                    
+                    <!-- 2. Charts / Data -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">市場データ・トレンド</div>
+                    </div>
+                    <div class="card">
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%222022%22%2C+%222023%22%2C+%222024%22%2C+%222025%28%5Cu4e88%29%22%2C+%222026%28%5Cu4e88%29%22%5D%2C+%22datasets%22%3A+%5B%7B%22type%22%3A+%22line%22%2C+%22label%22%3A+%22%5Cu6210%5Cu9577%5Cu7387%28%25%29%22%2C+%22data%22%3A+%5B2.5%2C+3.1%2C+4.2%2C+5.5%2C+6.1%5D%2C+%22borderColor%22%3A+%22%23ff9500%22%2C+%22fill%22%3A+false%2C+%22yAxisID%22%3A+%22y1%22%7D%2C+%7B%22type%22%3A+%22bar%22%2C+%22label%22%3A+%22%5Cu9632%5Cu97f3%5Cu5e02%5Cu5834%5Cu898f%5Cu6a21%28%5Cu5104%5Cu5186%29%22%2C+%22backgroundColor%22%3A+%22%230056b3%22%2C+%22data%22%3A+%5B1200%2C+1250%2C+1310%2C+1420%2C+1550%5D%2C+%22yAxisID%22%3A+%22y2%22%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu9632%5Cu97f3%5Cu30fb%5Cu906e%5Cu97f3%5Cu5e02%5Cu5834%5Cu898f%5Cu6a21%5Cu63a8%5Cu79fb%5Cu3068%5Cu6210%5Cu9577%5Cu7387%5Cu4e88%5Cu6e2c%22%7D%2C+%22scales%22%3A+%7B%22yAxes%22%3A+%5B%7B%22id%22%3A+%22y1%22%2C+%22type%22%3A+%22linear%22%2C+%22position%22%3A+%22right%22%2C+%22ticks%22%3A+%7B%22max%22%3A+10%2C+%22min%22%3A+0%7D%7D%2C+%7B%22id%22%3A+%22y2%22%2C+%22type%22%3A+%22linear%22%2C+%22position%22%3A+%22left%22%7D%5D%7D%7D%7D&w=500&h=300&bkg=white" alt="Chart" class="chart-img">
+                            <span class="source-note">Source: 建設市場予測データ 2026</span>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- 3. Stock Watch (New!) -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📈</span>
+                        <div class="section-title">関連株価ウォッチ</div>
+                    </div>
+                    <div class="stock-grid">
+                        <div class="stock-item"><span class="stock-name">鹿島建設</span><span class="stock-price">2,845</span><span class="stock-change plus">+1.2%</span></div><div class="stock-item"><span class="stock-name">大成建設</span><span class="stock-price">4,120</span><span class="stock-change minus">-0.5%</span></div><div class="stock-item"><span class="stock-name">リオン(騒音計)</span><span class="stock-price">1,980</span><span class="stock-change plus">+3.4%</span></div><div class="stock-item"><span class="stock-name">日本ピラー</span><span class="stock-price">5,430</span><span class="stock-change plus">+0.8%</span></div>
+                    </div>
+                    <br>
+                    
+                    
+                    <!-- 4. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content">
+                        <ul><li><b>規制改正ウェビナーの開催:</b> 「環境省指針改正のポイントと対策」と題した技術セミナーを企画し、設計事務所の設備担当者をターゲットに集客しましょう。</li><li><b>DC担当チームの連携強化:</b> 競合製品のベンチマークを行い、当社の強み（例: カスタム対応力、納期）を整理した比較資料を来週中に作成・配布することを推奨します。</li></ul>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+                    <!-- 5. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事</div>
+                    </div>
+    <h3 style="font-size: 14px; font-weight:700; color: #888; margin-top: 30px; border-bottom:1px solid #ddd; padding-bottom:5px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.decn.co.jp/">2025年度 建設投資見通し下方修正も、リニューアルは堅調</a></div>
+                <div class="news-meta">2026年1月13日 | 日刊建設工業新聞</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 新設住宅着工戸数が伸び悩む一方、非住宅建築物の改修投資は前年比+2.1%と予測されています。特に都市部でのオフィス機能更新に伴う設備改修が活発です。
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.env.go.jp/press/index.html">環境省、騒音規制法の運用指針を一部改正へ。低周波音対策を明記</a></div>
+                <div class="news-meta">2026年1月15日 | 環境省プレスリリース</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> ヒートポンプ給湯器や業務用空調機からの低周波音苦情増加を受け、測定方法と評価基準のガイドラインが見直される方針です。
+                </div>
+            </div>
+            <h3 style="font-size: 14px; font-weight:700; color: #888; margin-top: 30px; border-bottom:1px solid #ddd; padding-bottom:5px;">注目製品・技術</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.pillar.co.jp/">日本ピラー工業、新型「免震・防音二重床システム」をデータセンター向けに拡販</a></div>
+                <div class="news-meta">2026年1月14日 | 製品ニュース</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> サーバーラックの振動対策と床下空調の騒音低減を同時に実現する新システム。DC建設ラッシュを背景に受注を伸ばしています。
+                </div>
+            </div>
+            <h3 style="font-size: 14px; font-weight:700; color: #888; margin-top: 30px; border-bottom:1px solid #ddd; padding-bottom:5px;">顧客・競合動向</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.kajima.co.jp/news/index-j.html">某大手ゼネコン、全国の現場で「騒音見える化」システムを標準導入</a></div>
+                <div class="news-meta">2026年1月16日 | 建設ITワールド</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 近隣住民とのトラブル防止のため、仮囲いに騒音レベルをリアルタイム表示するデジタルサイネージの設置を義務化。測定器の需要増が見込まれます。
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt">低周波音 (Low Frequency Noise)</dt>
+                <dd class="glossary-dd">およそ100Hz以下の音。不快感や圧迫感、建具のガタつきの原因となる。一般的なA特性の騒音計では評価しにくいため、G特性など専用の評価が必要。</dd>
+            
+                <dt class="glossary-dt">免震床システム</dt>
+                <dd class="glossary-dd">地震の揺れを吸収・絶縁する床構造。サーバーなどの精密機器を守るためにデータセンターで必須となっており、空調効率や防音性能との両立が求められる。</dd>
+            
+            </dl>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                Automated Intelligence Newsletter System<br>
+                <a href="#">バックナンバー</a> | <a href="#">配信停止</a>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    

@@ -1,0 +1,374 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.8; color: #222; background-color: #f2f2f7; margin: 0; padding: 0; font-size: 18px; }
+            .wrapper { width: 100%; background-color: #f2f2f7; padding: 40px 0; }
+            .container { max-width: 720px; margin: 0 auto; background-color: #ffffff; border-radius: 20px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); overflow: hidden; }
+            
+            .header { background: linear-gradient(135deg, #003366 0%, #004488 100%); padding: 50px 40px; text-align: center; color: white; }
+            .brand { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; opacity: 0.95; margin-bottom: 12px; }
+            .title { font-size: 36px; font-weight: 800; margin: 0 0 20px 0; letter-spacing: -0.5px; line-height: 1.2; }
+            .period { font-size: 18px; background-color: rgba(255,255,255,0.2); display: inline-block; padding: 8px 20px; border-radius: 30px; font-weight: 600; }
+
+            .content { padding: 50px; }
+            .section-header { display: flex; align-items: center; margin-bottom: 30px; margin-top: 60px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            .section-header:first-child { margin-top: 0; }
+            .section-icon { font-size: 28px; margin-right: 15px; }
+            .section-title { font-size: 24px; font-weight: 800; color: #111; letter-spacing: -0.02em; }
+            
+            .card { background-color: #fff; border: 1px solid #ddd; border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+            .summary-card { background-color: #f0f7ff; border: 2px solid #cce4ff; border-left: 6px solid #0056b3; }
+            .proposal-card { background-color: #fffaf0; border: 2px solid #ffeeba; border-left: 6px solid #ff9500; }
+            .text-content { font-size: 18px; color: #333; }
+            .text-content ul { padding-left: 26px; margin: 0; }
+            .text-content li { margin-bottom: 15px; }
+            .trust-area { background-color: #f9f9f9; border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; }
+            .reasoning-box { font-size: 14px; color: #555; background-color: #fffde7; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #fff9c4; }
+            .reasoning-label { font-weight: 700; color: #f57f17; margin-bottom: 4px; display: block; font-size: 12px; text-transform: uppercase; }
+            .action-buttons { text-align: right; font-size: 14px; }
+            .link-btn { display: inline-block; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 13px; margin-left: 8px; transition: background-color 0.2s; }
+            .link-btn-evidence { background-color: #34c759; color: white; border: 1px solid #34c759; }
+            .link-btn-source { background-color: #fff; color: #0056b3; border: 1px solid #0056b3; }
+            .link-btn:hover { opacity: 0.9; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+            .news-card { margin-bottom: 30px; padding: 0; background-color: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); overflow:hidden; }
+            .news-summary-header { padding: 20px 25px; cursor: pointer; background-color: #fff; transition: background 0.2s; }
+            .news-summary-header:hover { background-color: #f9f9f9; }
+            .news-title { color: #003366; font-size: 22px; font-weight: 800; line-height: 1.4; }
+            .news-meta { font-size: 14px; color: #666; margin-top: 5px; }
+            
+            .read-more-indicator {
+                display: block;
+                margin-top: 15px;
+                font-size: 14px;
+                color: #0056b3;
+                font-weight: 700;
+                text-align: right;
+            }
+
+            .news-content-wrapper {
+                padding: 0 25px 25px 25px;
+                background-color: #fcfcfc;
+                border-top: 1px dashed #eee;
+            }
+
+            .point-badge { background-color: #0056b3; color: white; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
+            .point-text { font-size: 18px; font-weight: 700; color: #333; vertical-align: middle; }
+            .news-point-area { margin-top: 15px; }
+
+            .news-body-area { background-color: #f5f5f7; padding: 20px; border-radius: 8px; font-size: 16px; color: #444; line-height: 1.8; border-left: 4px solid #ccc; margin-bottom: 20px; margin-top: 20px; }
+
+            /* Sales Action Area */
+            .sales-action-area {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 15px;
+                background-color: #fff0f5; /* Light pinkish */
+                border: 2px dashed #ffb6c1;
+                border-radius: 8px;
+            }
+            .sales-label {
+                font-size: 14px;
+                font-weight: 800;
+                color: #d63384;
+                margin-bottom: 10px;
+                display: block;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .sales-talk-box {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 10px;
+            }
+            .talk-icon { font-size: 24px; margin-right: 10px; }
+            .talk-content { 
+                background: #fff; 
+                padding: 10px 15px; 
+                border-radius: 0 15px 15px 15px; 
+                border: 1px solid #ffccd5;
+                font-weight: 600;
+                color: #444;
+                font-size: 16px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .sales-hint-box {
+                font-size: 15px;
+                color: #555;
+                padding-left: 35px;
+            }
+            .hint-icon { margin-right: 5px; }
+
+            .chart-header { font-size: 18px; font-weight: 700; color: #444; margin-bottom: 15px; text-align: center; }
+            .chart-container { text-align: center; margin: 30px 0; }
+            .chart-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid #ccc; }
+            .source-note { font-size: 13px; color: #666; text-align: right; margin-top: 10px; display: block; }
+
+            .glossary-dl { margin: 0; }
+            .glossary-dt { font-weight: 800; font-size: 18px; margin-top: 25px; color: #222; border-bottom: 1px dashed #ccc; padding-bottom: 4px; display: inline-block; }
+            .glossary-dd { font-size: 16px; color: #555; margin-left: 0; margin-top: 8px; line-height: 1.8; }
+            .glossary-dd a.search-btn { display:inline-block; margin-top:8px; font-size:12px; color:#fff; background-color:#666; padding:4px 10px; border-radius:15px; text-decoration:none; }
+            
+            .footer { background-color: #222; color: #ccc; text-align: center; padding: 50px 20px; font-size: 14px; line-height: 1.8; }
+            
+            details > summary { list-style: none; }
+            details > summary::-webkit-details-marker { display: none; }
+
+            /* Mobile Responsive Styles */
+            @media only screen and (max-width: 600px) {
+                .wrapper { padding: 0 !important; }
+                .container { border-radius: 0 !important; width: 100% !important; max-width: 100% !important; box-shadow: none !important; }
+                .header { padding: 30px 20px !important; }
+                .title { font-size: 28px !important; }
+                .content { padding: 20px !important; }
+                .section-header { margin-top: 40px !important; }
+                .card, .news-card { padding: 0 !important; margin-bottom: 20px !important; }
+                .news-summary-header { padding: 20px !important; }
+                .news-content-wrapper { padding: 0 20px 20px 20px !important; }
+                .news-title { font-size: 20px !important; }
+                .point-text { font-size: 16px !important; }
+                .text-content { font-size: 16px !important; }
+                .news-body-area, .sales-action-area { padding: 15px !important; }
+                .action-buttons { text-align: left !important; margin-top: 15px !important; }
+                .link-btn { margin-left: 0 !important; margin-right: 8px !important; margin-bottom: 8px !important; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2026/02/02 ～ 2026/02/08</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content" style="padding: 25px;">
+                        <ul><li><b>データセンター特需の本格化:</b> 千葉県の規制強化は、高付加価値な（高額な）高性能消音器を標準仕様にするゲームチェンジャーです。コスト勝負ではなく性能勝負に持ち込めるチャンスです。</li><li><b>半導体・国家プロへの食い込み:</b> <details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">Rapidus</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 日本の次世代半導体製造を目指す国策企業。北海道千歳市に巨大工場を建設中で、関連するインフラ整備やサプライヤー工場の建設ラッシュが起きています。</div><a href="https://www.google.com/search?q=Rapidus" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>関連は「スピード」と「実績」が重視されます。過去の半導体工場での納入実績リストを整理し、即座に提出できるようにしてください。</li></ul>
+                        <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            2月は年度末予算の消化案件（小規模）と、次年度の大型計画（大規模）が交錯する時期ですが、今週は特に「次年度以降の大型ルール変更」に関するニュースが多いため、長期的な種まきを促す方針にしました。
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%20%E9%A8%92%E9%9F%B3%20%E5%8D%83%E8%91%89%E7%9C%8C%20%E8%A6%8F%E5%88%B6%E5%BC%B7%E5%8C%96" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索 (Google)</a>
+        </div>
+        </div>
+                    </div>
+                    
+                    <!-- 2. Visual Data -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">Visual Data</div>
+                    </div>
+                    <div class="card" style="padding: 25px;">
+                        <div class="chart-header">国内データセンター電力消費量予測 (冷却需要)</div>
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%222024%22%2C+%222025%22%2C+%222026%28%5Cu4e88%29%22%2C+%222027%28%5Cu4e88%29%22%2C+%222028%28%5Cu4e88%29%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22%5Cu96fb%5Cu529b%5Cu6d88%5Cu8cbb%5Cu91cf+%28TWh%29%22%2C+%22data%22%3A+%5B20%2C+26%2C+35%2C+50%2C+75%5D%2C+%22backgroundColor%22%3A+%22%23003366%22%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+false%7D%2C+%22scales%22%3A+%7B%22yAxes%22%3A+%5B%7B%22ticks%22%3A+%7B%22beginAtZero%22%3A+true%7D%7D%5D%7D%7D%7D&w=500&h=300&bkg=white" alt="Visual Data" class="chart-img">
+                            <span class="source-note">Source: 科学技術振興機構 (JST) 低炭素社会戦略センター</span>
+                        </div>
+                        <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            電力消費の大半はサーバー冷却（空調）です。このグラフの伸び率は、そのまま「冷却ファン騒音対策」の市場拡大率と読み替えることができます。
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%20%E9%9B%BB%E5%8A%9B%E6%B6%88%E8%B2%BB%E9%87%8F%20%E4%BA%88%E6%B8%AC%20%E6%97%A5%E6%9C%AC" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索 (Google)</a>
+        </div>
+        </div>
+                    </div>
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content" style="padding: 25px;">
+                        <ul><li><b>DC空調サブコンへの集中訪問:</b> 特にデータセンター実績の多いサブコン（高砂熱学、新菱冷熱など）の設計部に対し、「千葉県新条例対応スペック」と銘打った技術資料を持参してください。</li><li><b>B2B展示会への出展検討:</b> 6月開催の「データセンター構築展」への出展、または視察計画を立ててください。競合他社のDC向け防音製品の調査が必要です。</li></ul>
+                        <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            「規制強化」という外部要因は、営業にとって最強の武器です。顧客（サブコン）も対応に困っているはずなので、ソリューション（解決策）を持っていくことで「相談されるパートナー」になれます。
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E6%A7%8B%E7%AF%89%E5%B1%95%202026%20%E6%9D%B1%E4%BA%AC%E3%83%93%E3%83%83%E3%82%B0%E3%82%B5%E3%82%A4%E3%83%88" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索 (Google)</a>
+        </div>
+        </div>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事など</div>
+                    </div>
+    <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">大型プラント・インフラ動向</h3>
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">千葉県、データセンター立地で騒音規制を強化へ　冷却ファン<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">低周波音</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 100Hz以下の低い周波数の音。工場や風力発電のファン、ボイラーなどから発生し、「ブーン」という圧迫感のある不快音として建具をがたつかせたり、健康被害を引き起こすことがあります。</div><a href="https://www.google.com/search?q=%E4%BD%8E%E5%91%A8%E6%B3%A2%E9%9F%B3" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>に対応</div>
+                        <div class="news-meta">2026年02月03日 | 千葉県庁 / 日本経済新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">印西市などのDC集積地で、夜間の冷却ファン騒音に対する苦情が増加。県は独自の指導要綱を策定します。</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            千葉県は、<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">ハイパースケールデータセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> GoogleやAmazonなどの巨大IT企業が利用する、超大規模なデータセンターのこと。サーバー冷却のための空調設備が巨大化しており、室外機や冷却塔からの騒音問題が地域課題化しています。</div><a href="https://www.google.com/search?q=%E3%83%8F%E3%82%A4%E3%83%91%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%AB%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の急増に伴い、従来のアセスメント基準ではカバーしきれない「低周波音」を含む新たな騒音指導要綱を2026年度より施行します。特に屋上設置の空冷ファンに対する防音壁の高さ基準や、サイレンサー（消音器）の性能基準が見直される見通しです。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">千葉県でDCの騒音規制が強化される動きがありますが、御社が現在計画中の印西・流山のプロジェクト、冷却ファンの消音スペックは新基準を見越したものになっていますか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 設計事務所やサブコンに対し、「後から改修するとコストが倍になるため、今のうちにハイスペックな消音器を入れておきましょう」とスペックインを狙う絶好の口実です。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【AI選定理由】ササクラAEの主力製品である「空冷ファン用消音器」の特需が期待できる直接的な規制強化情報です。千葉県以外の自治体（埼玉・東京）も追随する可能性が高く、先回りの提案が有効です。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E5%8D%83%E8%91%89%E7%9C%8C%E3%80%81%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E7%AB%8B%E5%9C%B0%E3%81%A7%E9%A8%92%E9%9F%B3%E8%A6%8F%E5%88%B6%E3%82%92%E5%BC%B7%E5%8C%96%E3%81%B8%E3%80%80%E5%86%B7%E5%8D%B4%E3%83%95%E3%82%A1%E3%83%B3%E4%BD%8E%E5%91%A8%E6%B3%A2%E9%9F%B3%E3%81%AB%E5%AF%BE%E5%BF%9C" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.pref.chiba.lg.jp/kankyou/soun/index.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title"><details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">Rapidus</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 日本の次世代半導体製造を目指す国策企業。北海道千歳市に巨大工場を建設中で、関連するインフラ整備やサプライヤー工場の建設ラッシュが起きています。</div><a href="https://www.google.com/search?q=Rapidus" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>北海道工場、2027年稼働に向け第2期棟着工　付帯設備の発注ピーク</div>
+                        <div class="news-meta">2026年02月06日 | 建設工業新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">千歳市の次世代半導体工場、第2期工事が本格化。周辺の関連工場建設も進んでいます。</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            <details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">Rapidus</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 日本の次世代半導体製造を目指す国策企業。北海道千歳市に巨大工場を建設中で、関連するインフラ整備やサプライヤー工場の建設ラッシュが起きています。</div><a href="https://www.google.com/search?q=Rapidus" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>（ラピダス）のIIM-1（第1棟）に続き、IIM-2（第2棟）の基礎工事が開始されました。これに伴い、大量の受変電設備、非常用発電機、純水製造装置などの付帯設備が発注されています。これらの大型回転機器はいずれも強力な騒源となるため、防音防振対策が必須となります。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">ラピダス周辺のサプライチェーン企業の工場計画も進んでいますが、非常用発電機やポンプ室の防音対策はどの段階で検討されていますか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 本体（鹿島建設など）は敷居が高い場合、周辺に進出する「素材メーカー」「ガス供給会社」の設備担当をターゲットにすると入り込みやすいです。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【AI選定理由】国家プロジェクト級の超大型案件であり、予算規模も大きいためです。本体工事だけでなく、サプライヤー（素材・ガスメーカー）の周辺進出工場も狙い目です。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=Rapidus%E5%8C%97%E6%B5%B7%E9%81%93%E5%B7%A5%E5%A0%B4%E3%80%812027%E5%B9%B4%E7%A8%BC%E5%83%8D%E3%81%AB%E5%90%91%E3%81%91%E7%AC%AC2%E6%9C%9F%E6%A3%9F%E7%9D%80%E5%B7%A5%E3%80%80%E4%BB%98%E5%B8%AF%E8%A8%AD%E5%82%99%E3%81%AE%E7%99%BA%E6%B3%A8%E3%83%94%E3%83%BC%E3%82%AF" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rapidus.inc/news/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">法規制・技術トレンド</h3>
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">洋上風力発電の環境アセス期間を半減、2026年度より新制度運用</div>
+                        <div class="news-meta">2026年02月05日 | 経済産業省 / 環境省</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">再生可能エネルギー導入加速のため、<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">環境アセスメント</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大規模な開発事業を行う際に、事前に環境への影響を調査・予測・評価する手続きのこと。騒音・振動も主要な評価項目ですが、期間短縮のための制度改正が進んでいます。</div><a href="https://www.google.com/search?q=%E7%92%B0%E5%A2%83%E3%82%A2%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%B3%E3%83%88" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の手続きが簡素化されます。</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            政府は洋上風力発電の導入を加速させるため、通常3〜4年かかる<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">環境アセスメント</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大規模な開発事業を行う際に、事前に環境への影響を調査・予測・評価する手続きのこと。騒音・振動も主要な評価項目ですが、期間短縮のための制度改正が進んでいます。</div><a href="https://www.google.com/search?q=%E7%92%B0%E5%A2%83%E3%82%A2%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%B3%E3%83%88" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の期間を約1.5年～2年に短縮する新制度（日本版セントラル方式）を本格運用します。調査項目が絞り込まれますが、「風車騒音・低周波音」の事前シミュレーションに関しては、逆に住民説明のために高い精度が求められるようになります。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">アセス期間短縮の新制度で、逆に住民説明用の騒音シミュレーションの「納期」が厳しくなっていませんか？当社なら迅速に解析レポートを出せますよ。</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 開発事業者（商社・電力会社）の環境部門にアプローチし、アセス代行業者任せにせず、技術的根拠（シミュレーション）の部分請け負いを提案してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【AI選定理由】アセス期間短縮＝事業化スピードアップです。開発事業者は「早く、正確な」騒音シミュレーションを求めているため、当社の解析技術を売り込むチャンスです。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%B4%8B%E4%B8%8A%E9%A2%A8%E5%8A%9B%E7%99%BA%E9%9B%BB%E3%81%AE%E7%92%B0%E5%A2%83%E3%82%A2%E3%82%BB%E3%82%B9%E6%9C%9F%E9%96%93%E3%82%92%E5%8D%8A%E6%B8%9B%E3%80%812026%E5%B9%B4%E5%BA%A6%E3%82%88%E3%82%8A%E6%96%B0%E5%88%B6%E5%BA%A6%E9%81%8B%E7%94%A8" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.meti.go.jp/policy/energy_environment/global_warming/index.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card" style="padding: 25px;">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt">セントラル方式</dt>
+                <dd class="glossary-dd">
+                    洋上風力発電において、国が主導して初期段階の風況調査や<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">環境アセスメント</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大規模な開発事業を行う際に、事前に環境への影響を調査・予測・評価する手続きのこと。騒音・振動も主要な評価項目ですが、期間短縮のための制度改正が進んでいます。</div><a href="https://www.google.com/search?q=%E7%92%B0%E5%A2%83%E3%82%A2%E3%82%BB%E3%82%B9%E3%83%A1%E3%83%B3%E3%83%88" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>を行う仕組み。事業者の負担を減らし、導入を加速させる狙いがある。
+                    <br>
+                    <a href="https://www.google.com/search?q=%E3%82%BB%E3%83%B3%E3%83%88%E3%83%A9%E3%83%AB%E6%96%B9%E5%BC%8F" target="_blank" class="search-btn">🔍 裏付け検索 (Google)</a>
+                </dd>
+            
+            </dl>
+        </div>
+        
+                </div>
+            </div>
+            <div class="footer">Sasakura AE Sales Support</div>
+        </div>
+    </body>
+    </html>
+    

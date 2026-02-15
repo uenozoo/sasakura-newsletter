@@ -1,0 +1,464 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.8;
+                color: #222;
+                background-color: #f2f2f7;
+                margin: 0;
+                padding: 0;
+                -webkit-text-size-adjust: 100%;
+                font-size: 18px;
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f2f2f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 20px;
+                box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #003366 0%, #004488 100%);
+                padding: 50px 40px;
+                text-align: center;
+                color: white;
+            }
+            .brand {
+                font-size: 15px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0.95;
+                margin-bottom: 12px;
+            }
+            .title {
+                font-size: 36px;
+                font-weight: 800;
+                margin: 0 0 20px 0;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            }
+            .period {
+                font-size: 18px;
+                background-color: rgba(255,255,255,0.2);
+                display: inline-block;
+                padding: 8px 20px;
+                border-radius: 30px;
+                font-weight: 600;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 50px;
+            }
+            
+            /* Sections */
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 30px;
+                margin-top: 60px;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+            }
+            .section-header:first-child {
+                margin-top: 0;
+            }
+            .section-icon {
+                font-size: 28px;
+                margin-right: 15px;
+            }
+            .section-title {
+                font-size: 24px;
+                font-weight: 800;
+                color: #111;
+                letter-spacing: -0.02em;
+            }
+            
+            /* Cards */
+            .card {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 30px;
+            }
+            .summary-card {
+                background-color: #f0f7ff;
+                border: 2px solid #cce4ff;
+                border-left: 6px solid #0056b3;
+            }
+            .proposal-card {
+                background-color: #fffaf0;
+                border: 2px solid #ffeeba;
+                border-left: 6px solid #ff9500;
+            }
+            
+            /* Content Text */
+            .text-content {
+                font-size: 18px;
+                color: #333;
+            }
+            .text-content ul {
+                padding-left: 26px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 15px;
+            }
+            .text-content a {
+                color: #0056b3;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+
+            /* Reference Box */
+            .reference-box {
+                margin-top: 20px;
+                padding-top: 15px;
+                border-top: 1px dashed #ccc;
+                font-size: 14px;
+                color: #666;
+            }
+            .ref-label {
+                font-weight: 700;
+                color: #444;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .reference-box ul {
+                margin: 0;
+                padding-left: 20px;
+            }
+            .reference-box li {
+                margin-bottom: 3px;
+            }
+            
+            /* Chart */
+            .chart-header {
+                font-size: 18px;
+                font-weight: 700;
+                color: #444;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            .chart-container {
+                text-align: center;
+                margin: 30px 0;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 12px;
+                border: 1px solid #ccc;
+            }
+            .source-note {
+                font-size: 13px;
+                color: #666;
+                text-align: right;
+                margin-top: 10px;
+                display: block;
+            }
+
+            /* News Items */
+            .news-card {
+                margin-bottom: 45px;
+                padding: 25px;
+                background-color: #fdfdfd;
+                border: 1px solid #e0e0e0;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            }
+            
+            .news-title-area {
+                margin-bottom: 15px;
+            }
+            .news-title {
+                color: #003366;
+                font-size: 22px; 
+                font-weight: 800;
+                line-height: 1.4;
+            }
+            /* No link on title anymore */
+            
+            .news-meta {
+                font-size: 14px;
+                color: #666;
+                margin-top: 5px;
+            }
+            
+            .news-point-area {
+                margin-bottom: 20px;
+            }
+            .point-badge {
+                background-color: #0056b3;
+                color: white;
+                font-size: 12px;
+                font-weight: 800;
+                padding: 4px 10px;
+                border-radius: 4px;
+                vertical-align: middle;
+                margin-right: 8px;
+            }
+            .point-text {
+                font-size: 18px;
+                font-weight: 700;
+                color: #333;
+                vertical-align: middle;
+            }
+            
+            .news-body-area {
+                background-color: #f5f5f7;
+                padding: 20px;
+                border-radius: 8px;
+                font-size: 16px;
+                color: #444;
+                line-height: 1.8;
+                border-left: 4px solid #ccc;
+                margin-bottom: 20px;
+            }
+
+            /* News Links */
+            .news-links-area {
+                text-align: right;
+                font-size: 14px;
+            }
+            .link-btn {
+                display: inline-block;
+                padding: 6px 14px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 13px;
+                margin-left: 8px;
+                transition: background-color 0.2s;
+            }
+            .link-btn-primary {
+                background-color: #0056b3;
+                color: white;
+                border: 1px solid #0056b3;
+            }
+            .link-btn-secondary {
+                background-color: #fff;
+                color: #666;
+                border: 1px solid #ccc;
+            }
+            .link-btn:hover {
+                opacity: 0.8;
+                text-decoration: none;
+            }
+
+            /* Glossary */
+            .glossary-dl { margin: 0; }
+            .glossary-dt {
+                font-weight: 800;
+                font-size: 18px;
+                margin-top: 25px;
+                color: #222;
+                border-bottom: 1px dashed #ccc;
+                padding-bottom: 4px;
+                display: inline-block;
+            }
+            .glossary-dt a {
+                color: #222;
+                text-decoration: none;
+            }
+            .glossary-dt a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+            .glossary-dd {
+                font-size: 16px;
+                color: #555;
+                margin-left: 0;
+                margin-top: 8px;
+                line-height: 1.8;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: #222;
+                color: #ccc;
+                text-align: center;
+                padding: 50px 20px;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+            .footer a { color: #fff; text-decoration: none; font-weight: bold; }
+            .footer a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2026/02/02 ～ 2026/02/08</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content">
+                        <ul><li><b>届出オンライン化の影響:</b> 2026年度からのオンライン化は、行政側が「騒音データ」をより管理しやすくなることを意味します。規制遵守のチェックが厳格化する可能性があるため、施工計画段階での確実な防音対策提案が顧客（ゼネコン）のリスクヘッジになります。</li><li><b>DX/データ活用の定着:</b> 騒音測定は「トラブル時の証拠」から「日常の品質管理データ」へと役割を変えつつあります。</li></ul>
+                        <div class="reference-box"><span class="ref-label">References:</span><ul><li><a href="https://www.env.go.jp/air/noise/law/index.html" target="_blank">環境省 騒音規制法概要</a></li></ul></div>
+                    </div>
+                    
+                    <!-- 2. Visual Data (Chart / Diagram) -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">Visual Data</div>
+                    </div>
+                    <div class="card">
+                        <div class="chart-header">今週のデータ・ピックアップ</div>
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%222023%22%2C+%222024%22%2C+%222025%22%2C+%222026%28%5Cu4e88%29%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22%5Cu7279%5Cu5b9a%5Cu5efa%5Cu8a2d%5Cu4f5c%5Cu696d+%5Cu5c4a%5Cu51fa%5Cu4ef6%5Cu6570%28%5Cu4e07%5Cu4ef6%29%22%2C+%22data%22%3A+%5B12.5%2C+13.1%2C+13.8%2C+14.5%5D%2C+%22backgroundColor%22%3A+%5B%22%23cccccc%22%2C+%22%23cccccc%22%2C+%22%23cccccc%22%2C+%22%230056b3%22%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu7279%5Cu5b9a%5Cu5efa%5Cu8a2d%5Cu4f5c%5Cu696d+%5Cu5b9f%5Cu65bd%5Cu5c4a%5Cu51fa%5Cu4ef6%5Cu6570%5Cu306e%5Cu63a8%5Cu79fb%22%2C+%22fontSize%22%3A+16%7D%2C+%22plugins%22%3A+%7B%22subtitle%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu90fd%5Cu5e02%5Cu518d%5Cu958b%5Cu767a%5Cu306e%5Cu5897%5Cu52a0%5Cu306b%5Cu4f34%5Cu3044%5Cu5c4a%5Cu51fa%5Cu6570%5Cu306f%5Cu5897%5Cu52a0%5Cu50be%5Cu5411%22%7D%7D%7D%7D&w=500&h=300&bkg=white" alt="Visual Data" class="chart-img">
+                            <span class="source-note">Source: 独自推計および業界統計より</span>
+                        </div>
+                        <div class="reference-box"><span class="ref-label">References:</span><ul><li><a href="https://www.soumu.go.jp/kouchoi/knowledge/statistics/index.html" target="_blank">公害苦情調査結果 (総務省)</a></li></ul></div>
+                    </div>
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content">
+                        <ul><li><b>「届出DX」フックの営業:</b> 現場監督の事務負担軽減は大きな関心事です。「オンライン届出にスムーズに対応するための事前測定・データ整備をお手伝いします」という切り口で、一括受注を狙いましょう。</li><li><b>公害防止管理者資格の取得奨励:</b> 『新・技術と法規』の発刊に合わせて、若手営業マンに資格取得（騒音・振動関係）を促し、専門家としての信頼度を高める社内キャンペーンを企画してはいかがでしょうか。</li></ul>
+                        
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事</div>
+                    </div>
+    <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">建設作業の騒音届出、2026年度からオンライン化へ。自治体・事業者の負担軽減</div>
+                    <div class="news-meta">2026年02月04日 | 建設通信新聞 / 環境省</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">環境省と国交省は、特定建設作業に伴う騒音・振動の届出（リサイクル法届出等との一元化）を、2026年度以降順次オンラインシステムへ移行する方針を固めました。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    従来、建設現場ごとの自治体窓口への紙提出が義務付けられていましたが、行政・事業者双方の事務負担軽減を目的にDX化が推進されます。<br>これにより、届出データの即時反映や、過去の騒音実績データの蓄積・分析が一層進むと考えられ、事前の騒音シミュレーション精度の重要性が増します。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    <a href="https://www.kensetsu-news.co.jp/" target="_blank" class="link-btn link-btn-primary">記事を読む ⧉</a><a href="https://www.google.com/search?q=建設作業+騒音届出+オンライン化+2026" target="_blank" class="link-btn link-btn-secondary">予備リンク(Top) ⧉</a><a href="https://www.env.go.jp/air/noise/noise.html" target="_blank" class="link-btn link-btn-secondary">参考資料 ⧉</a>
+                </div>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">注目製品・技術</h3>
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">2026年の騒音対策は「DX」が鍵。工場・現場の予知保全トレンド</div>
+                    <div class="news-meta">2026年02月05日 | Smart Factory研究所</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">従来の「事後対応」から、センサーとAIを用いた「予知保全」へのシフトが加速しています。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    工場や建設現場において、騒音データをリアルタイムで収集・解析することで、設備の異常（異音）を早期に検知し、故障や近隣トラブルが発生する前に対策を打つ動きが広がっています。<br>従業員の聴覚保護（ヘルスケア）の観点からも、ウェアラブルデバイスと連動した騒音管理ソリューションへの注目が高まっています。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    <a href="https://smart-factory-kenkyujo.com/" target="_blank" class="link-btn link-btn-primary">記事を読む ⧉</a><a href="https://www.google.com/search?q=騒音対策+DX+予知保全" target="_blank" class="link-btn link-btn-secondary">予備リンク(Top) ⧉</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <!-- 1. Title (No Link) -->
+                <div class="news-title-area">
+                    <div class="news-title">書籍『新・公害防止の技術と法規 2026』発行へ</div>
+                    <div class="news-meta">2026年02月19日(予定) | 産業環境管理協会</div>
+                </div>
+                
+                <!-- 2. Point -->
+                <div class="news-point-area">
+                    <span class="point-badge">POINT</span>
+                    <span class="point-text">公害防止管理者等資格認定講習用図書の最新版。騒音・振動編において最新の規制動向や技術事例が網羅されています。</span>
+                </div>
+                
+                <!-- 3. Body Content (詳細) -->
+                <div class="news-body-area">
+                    （※発行予告情報）<br>最新の法令改正や、低周波音対策、最新の防振技術などが盛り込まれる予定です。営業・技術部門の基礎知識アップデートとして必携の1冊となります。
+                </div>
+                
+                <!-- 4. Links (Bottom) -->
+                <div class="news-links-area">
+                    <a href="https://www.jemai.or.jp/" target="_blank" class="link-btn link-btn-primary">記事を読む ⧉</a><a href="https://www.google.com/search?q=新・公害防止の技術と法規+2026" target="_blank" class="link-btn link-btn-secondary">予備リンク(Top) ⧉</a>
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt"><a href="https://www.env.go.jp/air/noise/law/construction.html" target="_blank">特定建設作業 ⧉</a></dt>
+                <dd class="glossary-dd">建設工事の中でも特に著しい騒音・振動を発生させる作業（くい打ち機、削岩機などを使用する作業）。騒音規制法に基づき、市町村長への事前の届出が義務付けられている。</dd>
+            
+                <dt class="glossary-dt"><a href="https://ja.wikipedia.org/wiki/予知保全" target="_blank">予知保全 (Predictive Maintenance) ⧉</a></dt>
+                <dd class="glossary-dd">設備が故障してから直すのではなく、センサーやAIで状態を監視し、故障の兆候（異音や振動など）が見られた段階でメンテナンスを行う手法。</dd>
+            
+            </dl>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                Sasakura Engineering Co., Ltd.<br>
+                Sales Support System<br>
+                <br>
+                <a href="#" target="_blank">バックナンバー</a> | <a href="#" target="_blank">配信停止</a>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    

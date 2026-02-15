@@ -1,0 +1,1846 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sasakura AE Newsletter</title>
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.8; color: #222; background-color: #f2f2f7; margin: 0; padding: 0; font-size: 18px; }
+            .wrapper { width: 100%; background-color: #f2f2f7; padding: 40px 0; }
+            .container { max-width: 720px; margin: 0 auto; background-color: #ffffff; border-radius: 20px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); overflow: hidden; }
+            
+            .header { background: linear-gradient(135deg, #003366 0%, #004488 100%); padding: 50px 40px; text-align: center; color: white; }
+            .brand { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; opacity: 0.95; margin-bottom: 12px; }
+            .title { font-size: 36px; font-weight: 800; margin: 0 0 20px 0; letter-spacing: -0.5px; line-height: 1.2; }
+            .period { font-size: 18px; background-color: rgba(255,255,255,0.2); display: inline-block; padding: 8px 20px; border-radius: 30px; font-weight: 600; }
+
+            .content { padding: 50px; }
+            .section-header { display: flex; align-items: center; margin-bottom: 30px; margin-top: 60px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            .section-header:first-child { margin-top: 0; }
+            .section-icon { font-size: 28px; margin-right: 15px; }
+            .section-title { font-size: 24px; font-weight: 800; color: #111; letter-spacing: -0.02em; }
+            
+            .card { background-color: #fff; border: 1px solid #ddd; border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+            .summary-card { background-color: #f0f7ff; border: 2px solid #cce4ff; border-left: 6px solid #0056b3; }
+            .proposal-card { background-color: #fffaf0; border: 2px solid #ffeeba; border-left: 6px solid #ff9500; }
+            .text-content { font-size: 18px; color: #333; }
+            .text-content ul { padding-left: 26px; margin: 0; }
+            .text-content li { margin-bottom: 15px; }
+            .trust-area { background-color: #f9f9f9; border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; }
+            .reasoning-box { font-size: 14px; color: #555; background-color: #fffde7; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #fff9c4; }
+            .reasoning-label { font-weight: 700; color: #f57f17; margin-bottom: 4px; display: block; font-size: 12px; text-transform: uppercase; }
+            .action-buttons { text-align: right; font-size: 14px; }
+            .link-btn { display: inline-block; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 13px; margin-left: 8px; transition: background-color 0.2s; }
+            .link-btn-evidence { background-color: #34c759; color: white; border: 1px solid #34c759; }
+            .link-btn-source { background-color: #fff; color: #0056b3; border: 1px solid #0056b3; }
+            .link-btn:hover { opacity: 0.9; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+            .news-card { margin-bottom: 30px; padding: 0; background-color: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); overflow:hidden; }
+            .news-summary-header { padding: 20px 25px; cursor: pointer; background-color: #fff; transition: background 0.2s; }
+            .news-summary-header:hover { background-color: #f9f9f9; }
+            .news-title { color: #003366; font-size: 22px; font-weight: 800; line-height: 1.4; }
+            .news-meta { font-size: 14px; color: #666; margin-top: 5px; }
+            
+            .read-more-indicator {
+                display: block;
+                margin-top: 15px;
+                font-size: 14px;
+                color: #0056b3;
+                font-weight: 700;
+                text-align: right;
+            }
+
+            .news-content-wrapper {
+                padding: 0 25px 25px 25px;
+                background-color: #fcfcfc;
+                border-top: 1px dashed #eee;
+            }
+
+            .point-badge { background-color: #0056b3; color: white; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 4px; margin-right: 8px; vertical-align: middle; }
+            .point-text { font-size: 18px; font-weight: 700; color: #333; vertical-align: middle; }
+            .news-point-area { margin-top: 15px; }
+
+            .news-body-area { background-color: #f5f5f7; padding: 20px; border-radius: 8px; font-size: 16px; color: #444; line-height: 1.8; border-left: 4px solid #ccc; margin-bottom: 20px; margin-top: 20px; }
+
+            /* Sales Action Area */
+            .sales-action-area {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 15px;
+                background-color: #fff0f5; /* Light pinkish */
+                border: 2px dashed #ffb6c1;
+                border-radius: 8px;
+            }
+            .sales-label {
+                font-size: 14px;
+                font-weight: 800;
+                color: #d63384;
+                margin-bottom: 10px;
+                display: block;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .sales-talk-box {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 10px;
+            }
+            .talk-icon { font-size: 24px; margin-right: 10px; }
+            .talk-content { 
+                background: #fff; 
+                padding: 10px 15px; 
+                border-radius: 0 15px 15px 15px; 
+                border: 1px solid #ffccd5;
+                font-weight: 600;
+                color: #444;
+                font-size: 16px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .sales-hint-box {
+                font-size: 15px;
+                color: #555;
+                padding-left: 35px;
+            }
+            .hint-icon { margin-right: 5px; }
+
+            .chart-header { font-size: 18px; font-weight: 700; color: #444; margin-bottom: 15px; text-align: center; }
+            .chart-container { text-align: center; margin: 30px 0; }
+            .chart-img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid #ccc; }
+            .source-note { font-size: 13px; color: #666; text-align: right; margin-top: 10px; display: block; }
+
+            .glossary-dl { margin: 0; }
+            .glossary-dt { font-weight: 800; font-size: 18px; margin-top: 25px; color: #222; border-bottom: 1px dashed #ccc; padding-bottom: 4px; display: inline-block; }
+            .glossary-dd { font-size: 16px; color: #555; margin-left: 0; margin-top: 8px; line-height: 1.8; }
+            .glossary-dd a.search-btn { display:inline-block; margin-top:8px; font-size:12px; color:#fff; background-color:#666; padding:4px 10px; border-radius:15px; text-decoration:none; }
+            
+            .footer { background-color: #222; color: #ccc; text-align: center; padding: 50px 20px; font-size: 14px; line-height: 1.8; }
+            
+            details > summary { list-style: none; }
+            details > summary::-webkit-details-marker { display: none; }
+
+            /* Mobile Responsive Styles */
+            @media only screen and (max-width: 600px) {
+                .wrapper { padding: 0 !important; }
+                .container { border-radius: 0 !important; width: 100% !important; max-width: 100% !important; box-shadow: none !important; }
+                .header { padding: 30px 20px !important; }
+                .title { font-size: 28px !important; }
+                .content { padding: 20px !important; }
+                .section-header { margin-top: 40px !important; }
+                .card, .news-card { padding: 0 !important; margin-bottom: 20px !important; }
+                .news-summary-header { padding: 20px !important; }
+                .news-content-wrapper { padding: 0 20px 20px 20px !important; }
+                .news-title { font-size: 20px !important; }
+                .point-text { font-size: 16px !important; }
+                .text-content { font-size: 16px !important; }
+                .news-body-area, .sales-action-area { padding: 15px !important; }
+                .action-buttons { text-align: left !important; margin-top: 15px !important; }
+                .link-btn { margin-left: 0 !important; margin-right: 8px !important; margin-bottom: 8px !important; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Sasakura AE Newsletter</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2026/02/08 ～ 2026/02/15</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content" style="padding: 25px;">
+                        <ul><li>今週の主要ニュースを自動収集しました。詳細は各記事をご確認ください。</li></ul>
+                        <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            自動収集プロセスによる生成
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://www.google.com/search?q=%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E4%B8%80%E8%A6%A7" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索 (Google)</a>
+        </div>
+        </div>
+                    </div>
+                    
+                    <!-- 2. Visual Data -->
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content" style="padding: 25px;">
+                        <ul><li>収集されたニュースを基に、関連顧客への情報提供を行ってください。</li></ul>
+                        <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            定型的アクション提案
+        </div>
+        
+        <div class="action-buttons">
+            <a href="https://www.google.com/search?q=%E3%83%BC" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索 (Google)</a>
+        </div>
+        </div>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 50px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事など</div>
+                    </div>
+    <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">携帯型除細動器の世界市場2026年、グローバル市場規模（半自動型 ...</div>
+                        <div class="news-meta">2026年02月13日 | RBB TODAY</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">株式会社マーケットリサーチセンター（本社：東京都港区、世界の市場調査資料販売）では、「携帯型除細動器の世界市場2026年」調査資料を発表しました。資料には、携帯型除細動器のグローバル市場規模、動向、予...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            株式会社マーケットリサーチセンター（本社：東京都港区、世界の市場調査資料販売）では、「携帯型除細動器の世界市場2026年」調査資料を発表しました。資料には、携帯型除細動器のグローバル市場規模、動向、予測、関連企業の情報などが盛り込まれています。 ■主な掲載内容 本レポートは、世界における携帯型除細動器市場の現状と将来展望について、定量分析および定性分析の両面から包括的にまとめた内容です。 携帯型除
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「携帯型除細動器の世界市場202...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%90%BA%E5%B8%AF%E5%9E%8B%E9%99%A4%E7%B4%B0%E5%8B%95%E5%99%A8%E3%81%AE%E4%B8%96%E7%95%8C%E5%B8%82%E5%A0%B42026%E5%B9%B4%E3%80%81%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E5%B8%82%E5%A0%B4%E8%A6%8F%E6%A8%A1%EF%BC%88%E5%8D%8A%E8%87%AA%E5%8B%95%E5%9E%8B%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rbbtoday.com/release/dreamnews/20260213/1207778.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">日本のX線検出器市場、2034年に3億1,750万米ドル規模到達見込み</div>
+                        <div class="news-meta">2026年02月12日 | CNET Japan</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「日本のX線検出器市場レポート：種類別、携帯性別、用途別、...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「日本のX線検出器市場レポート：種類別、携帯性別、用途別、地域別2026-2034年」（IMARC Group）の販売を2月10日より開始いたしました。グローバルインフォメーションはIMARC Groupの日本における正規代理店です。 日本のX線検出器市場は
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「日本のX線検出器市場、2034...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%97%A5%E6%9C%AC%E3%81%AEX%E7%B7%9A%E6%A4%9C%E5%87%BA%E5%99%A8%E5%B8%82%E5%A0%B4%E3%80%812034%E5%B9%B4%E3%81%AB3%E5%84%841%2C750%E4%B8%87%E7%B1%B3%E3%83%89%E3%83%AB%E8%A6%8F%E6%A8%A1%E5%88%B0%E9%81%94%E8%A6%8B%E8%BE%BC%E3%81%BF" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://japan.cnet.com/release/31146681/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">患者モニタリング機器の市場規模、2033年に1182億1000万米ドル到達予測</div>
+                        <div class="news-meta">2026年02月12日 | CNET Japan</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「患者モニタリング機器市場規模、シェア及び動向分析レポート...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「患者モニタリング機器市場規模、シェア及び動向分析レポート：製品別、最終用途別、地域別、セグメント別予測（2026年～2033年）」（Grand View Research, Inc.）の販売を2月10日より開始いたしました。グローバルインフォメーションはG
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「患者モニタリング機器の市場規模...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%82%A3%E8%80%85%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%AA%E3%83%B3%E3%82%B0%E6%A9%9F%E5%99%A8%E3%81%AE%E5%B8%82%E5%A0%B4%E8%A6%8F%E6%A8%A1%E3%80%812033%E5%B9%B4%E3%81%AB1182%E5%84%841000%E4%B8%87%E7%B1%B3%E3%83%89%E3%83%AB%E5%88%B0%E9%81%94%E4%BA%88%E6%B8%AC" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://japan.cnet.com/release/31146641/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">リテールメディア市場は2035年に1兆円規模へ BCGとGoogleが成長を予測</div>
+                        <div class="news-meta">2026年02月10日 | MarkeZine（マーケジン）</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">MarkeZine Day（マーケジンデイ）は、マーケティング専門メディア「MarkeZine」が主催するイベントです。  「マーケティングの今を網羅する」をコンセプトに、拡張・複雑化している広告・マ...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            MarkeZine Day（マーケジンデイ）は、マーケティング専門メディア「MarkeZine」が主催するイベントです。  「マーケティングの今を網羅する」をコンセプトに、拡張・複雑化している広告・マーケティング領域の最新情報を効率的にキャッチできる場所として企画・運営しています。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「リテールメディア市場は2035...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%83%AA%E3%83%86%E3%83%BC%E3%83%AB%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E5%B8%82%E5%A0%B4%E3%81%AF2035%E5%B9%B4%E3%81%AB1%E5%85%86%E5%86%86%E8%A6%8F%E6%A8%A1%E3%81%B8%20BCG%E3%81%A8Google%E3%81%8C%E6%88%90%E9%95%B7%E3%82%92%E4%BA%88%E6%B8%AC" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://markezine.jp/article/detail/50418" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">株式会社グローバルインフォメーション：フレグランス製品の市場 ...</div>
+                        <div class="news-meta">2026年02月09日 | 朝日新聞デジタル</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「フレグランス製品市場の機会、成長促進要因、業界動向分析、...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            株式会社グローバルインフォメーション（所在地：神奈川県川崎市、代表者：樋口 荘祐、証券コード：東証スタンダード 4171）は、市場調査レポート「フレグランス製品市場の機会、成長促進要因、業界動向分析、予測（2026年～2035年）」（Global Market Insights Inc.）の販売を2月6日より開始いたしました。グローバルインフォメーションはGlobal Market Insight
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「株式会社グローバルインフォメー...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%E3%82%B0%E3%83%AD%E3%83%BC%E3%83%90%E3%83%AB%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%EF%BC%9A%E3%83%95%E3%83%AC%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B9%E8%A3%BD%E5%93%81%E3%81%AE%E5%B8%82%E5%A0%B4%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.asahi.com/and/pressrelease/16340996" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">日本のエアフレッシュナー市場予測：2034年までにUSD 1,218.2百万に ...</div>
+                        <div class="news-meta">2026年02月10日 | アットプレス</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">IMARCグループの最新レポートによると、日本の芳香剤市場規模は2025年に8億2,890万米ドルに達した。同市場は2026年から2034年にかけて年平均成長率（CAGR）4.37%で成長し、2034...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            IMARCグループの最新レポートによると、日本の芳香剤市場規模は2025年に8億2,890万米ドルに達した。同市場は2026年から2034年にかけて年平均成長率（CAGR）4.37%で成長し、2034年までに12億1,820万米ドルに達すると予測されている。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「日本のエアフレッシュナー市場予...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%97%A5%E6%9C%AC%E3%81%AE%E3%82%A8%E3%82%A2%E3%83%95%E3%83%AC%E3%83%83%E3%82%B7%E3%83%A5%E3%83%8A%E3%83%BC%E5%B8%82%E5%A0%B4%E4%BA%88%E6%B8%AC%EF%BC%9A2034%E5%B9%B4%E3%81%BE%E3%81%A7%E3%81%ABUSD%201%2C218.2%E7%99%BE%E4%B8%87%E3%81%AB%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.atpress.ne.jp/news/1396252" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">電動式自動車用ホーン市場、CAGR2.0%で成長し、2032年には956百万米 ...</div>
+                        <div class="news-meta">2026年02月12日 | 宮崎日日新聞社</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">YH Researchの分析によれば、世界の電動式自動車用ホーン市場は2025年に835百万米ドルと推計され、2026年には850百万米ドルへと成長する見通しです。さらに中期的には、2032年に956...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            YH Researchの分析によれば、世界の電動式自動車用ホーン市場は2025年に835百万米ドルと推計され、2026年には850百万米ドルへと成長する見通しです。さらに中期的には、2032年に956百万米ドルへ到達すると予測されています。2026年から2032年にかけたCAGR（年平均成長率）は2.0%と見込まれ、市場成長は技術革新、用途拡大、産業全体の高度化に支えられています。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「電動式自動車用ホーン市場、CA...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E9%9B%BB%E5%8B%95%E5%BC%8F%E8%87%AA%E5%8B%95%E8%BB%8A%E7%94%A8%E3%83%9B%E3%83%BC%E3%83%B3%E5%B8%82%E5%A0%B4%E3%80%81CAGR2.0%25%E3%81%A7%E6%88%90%E9%95%B7%E3%81%97%E3%80%812032%E5%B9%B4%E3%81%AB%E3%81%AF956%E7%99%BE%E4%B8%87%E7%B1%B3%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.the-miyanichi.co.jp/pressrelease/dreamnews/559748.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">世界の音声アシスタントアプリケーション市場動向：2032年に757億 ...</div>
+                        <div class="news-meta">2026年02月12日 | 宮崎日日新聞社</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">世界の音声アシスタントアプリケーション市場は、デジタル体験の進化を象徴する分野として急速に拡大しています。2023年に58億1,000万米ドル規模であった市場は、2032年までに757億8000万米ド...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            世界の音声アシスタントアプリケーション市場は、デジタル体験の進化を象徴する分野として急速に拡大しています。2023年に58億1,000万米ドル規模であった市場は、2032年までに757億8000万米ドルへと飛躍的に成長すると予測されており、2024年から2032年の予測期間における年平均成長率（CAGR）は33％に達します。この成長の根底には、自然言語処理（NLP）や機械学習、音声認識技術の高度化があり、ユーザーとデジタルサービスとの関係性を根本から変えつつあります。音声操作は、キーボードやタッチ操作に代わる直感的なインターフェースとして、多様な業界で不可欠な存在となっています。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「世界の音声アシスタントアプリケ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E4%B8%96%E7%95%8C%E3%81%AE%E9%9F%B3%E5%A3%B0%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%B8%82%E5%A0%B4%E5%8B%95%E5%90%91%EF%BC%9A2032%E5%B9%B4%E3%81%AB757%E5%84%84%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.the-miyanichi.co.jp/pressrelease/dreamnews/560132.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">世界の断熱材市場2026-2030年</div>
+                        <div class="news-meta">2026年02月12日 | アットプレス</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">世界の断熱材市場は、2025年から2030年の間に282億1,580万米ドル規模に成長し、予測期間中のCAGRは5.8％と予測されております。 本報告書では、世界の断熱材市場に関する包括的な分析、市場...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            世界の断熱材市場は、2025年から2030年の間に282億1,580万米ドル規模に成長し、予測期間中のCAGRは5.8％と予測されております。 本報告書では、世界の断熱材市場に関する包括的な分析、市場規模と予測、動向、成長要因、課題に加え、約25社のベンダー分析を提供しております。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「世界の断熱材市場2026-20...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E4%B8%96%E7%95%8C%E3%81%AE%E6%96%AD%E7%86%B1%E6%9D%90%E5%B8%82%E5%A0%B42026-2030%E5%B9%B4" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.atpress.ne.jp/news/5601971" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">「スーパーシーリング断熱ガラスの世界市場」市場規模・動向 ...</div>
+                        <div class="news-meta">2026年02月10日 | RBB TODAY</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">*****「スーパーシーリング断熱ガラスの世界市場」市場規模・動向・予測レポートを発行、年平均4.3 %で成長する見込み ***** H&Iグローバルリサーチ株式会社（本社：東京都中央区）は、「世界の...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            *****「スーパーシーリング断熱ガラスの世界市場」市場規模・動向・予測レポートを発行、年平均4.3 %で成長する見込み ***** H&Iグローバルリサーチ株式会社（本社：東京都中央区）は、「世界のスーパーシーリング断熱ガラス市場」調査レポートを発行・販売します。スーパーシーリング断熱ガラスの世界市場規模、市場動向、予測、関連企業情報などが含まれています。 本調査レポート（Global Supe
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「「スーパーシーリング断熱ガラス...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%80%8C%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B7%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E6%96%AD%E7%86%B1%E3%82%AC%E3%83%A9%E3%82%B9%E3%81%AE%E4%B8%96%E7%95%8C%E5%B8%82%E5%A0%B4%E3%80%8D%E5%B8%82%E5%A0%B4%E8%A6%8F%E6%A8%A1%E3%83%BB%E5%8B%95%E5%90%91%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rbbtoday.com/release/dreamnews/20260210/1205997.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">世界のビニルニトリルフォーム市場成長率：2032年までに4.6%に ...</div>
+                        <div class="news-meta">2026年02月09日 | RBB TODAY</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">2026年2月9日、QYResearch株式会社（所在地：東京都中央区）は、「ビニルニトリルフォーム―グローバル市場シェアとランキング、全体の売上と需要予測、2026～2032」の調査レポートを発行し...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            2026年2月9日、QYResearch株式会社（所在地：東京都中央区）は、「ビニルニトリルフォーム―グローバル市場シェアとランキング、全体の売上と需要予測、2026～2032」の調査レポートを発行しました。本調査では、ビニルニトリルフォーム市場の世界規模、成長要因、競争環境を多角的に分析し、今後の市場展望を明確にします。ビニルニトリルフォーム市場の最新データをもとに、主要企業のランキング、売上、
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「世界のビニルニトリルフォーム市...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E4%B8%96%E7%95%8C%E3%81%AE%E3%83%93%E3%83%8B%E3%83%AB%E3%83%8B%E3%83%88%E3%83%AA%E3%83%AB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E5%B8%82%E5%A0%B4%E6%88%90%E9%95%B7%E7%8E%87%EF%BC%9A2032%E5%B9%B4%E3%81%BE%E3%81%A7%E3%81%AB4.6%25%E3%81%AB%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rbbtoday.com/release/dreamnews/20260209/1205217.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">2025年のシリコンウェハ市場は出荷面積は増加も販売額は減少</div>
+                        <div class="news-meta">2026年02月12日 | マイナビニュース</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">SEMIは2月10日、SEMI Electronic Materials Group (EMG)のサブコミッティである「SEMI Silicon Manufacturers Group (SMG)」に...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            SEMIは2月10日、SEMI Electronic Materials Group (EMG)のサブコミッティである「SEMI Silicon Manufacturers Group (SMG)」によるシリコンウェハ業界の分析結果をもとに、2025年のシリコンウェハ出荷面積が前年比5.8％増の129億7300万平方インチとなったこと、ならびに販売額が同1.2％減の114億ドルとなったことを発表した。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「2025年のシリコンウェハ市場...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=2025%E5%B9%B4%E3%81%AE%E3%82%B7%E3%83%AA%E3%82%B3%E3%83%B3%E3%82%A6%E3%82%A7%E3%83%8F%E5%B8%82%E5%A0%B4%E3%81%AF%E5%87%BA%E8%8D%B7%E9%9D%A2%E7%A9%8D%E3%81%AF%E5%A2%97%E5%8A%A0%E3%82%82%E8%B2%A9%E5%A3%B2%E9%A1%8D%E3%81%AF%E6%B8%9B%E5%B0%91" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://news.mynavi.jp/techplus/article/20260212-4113896/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">日本断熱材市場は、持続可能性への要請と次世代熱ソリューション ...</div>
+                        <div class="news-meta">2026年02月09日 | アットプレス</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">株式会社レポートオーシャンのプレスリリース:日本断熱材市場は、持続可能性への要請と次世代熱ソリューションを背景に、2035年までに66億7260万米ドルに達し、年平均成長率（CAGR）6.56％で拡大...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            株式会社レポートオーシャンのプレスリリース:日本断熱材市場は、持続可能性への要請と次世代熱ソリューションを背景に、2035年までに66億7260万米ドルに達し、年平均成長率（CAGR）6.56％で拡大すると予測されている
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「日本断熱材市場は、持続可能性へ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%97%A5%E6%9C%AC%E6%96%AD%E7%86%B1%E6%9D%90%E5%B8%82%E5%A0%B4%E3%81%AF%E3%80%81%E6%8C%81%E7%B6%9A%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%B8%E3%81%AE%E8%A6%81%E8%AB%8B%E3%81%A8%E6%AC%A1%E4%B8%96%E4%BB%A3%E7%86%B1%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.atpress.ne.jp/news/1610363" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">MM総研、「2025年（暦年）国内携帯電話端末の出荷台数調査」の結果 ...</div>
+                        <div class="news-meta">2026年02月12日 | 日本経済新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">【プレスリリース】発表日:2026年02月12日買い替え好調で2年連続増加もメモリー不足による価格高騰が懸念「2025年（暦年）国内携帯電話端末の出荷台数調査」■2025年の携帯電話出荷台数は3196...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            【プレスリリース】発表日:2026年02月12日買い替え好調で2年連続増加もメモリー不足による価格高騰が懸念「2025年（暦年）国内携帯電話端末の出荷台数調査」■2025年の携帯電話出荷台数は3196.9万台（前年比10.7%増）と2年連続増加■スマートフォン出荷台数は3111.4万台（同11.6%増）■Android市場は3万円未満比率が2019年から2025年で4倍に拡大■メ
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「MM総研、「2025年（暦年）...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=MM%E7%B7%8F%E7%A0%94%E3%80%81%E3%80%8C2025%E5%B9%B4%EF%BC%88%E6%9A%A6%E5%B9%B4%EF%BC%89%E5%9B%BD%E5%86%85%E6%90%BA%E5%B8%AF%E9%9B%BB%E8%A9%B1%E7%AB%AF%E6%9C%AB%E3%81%AE%E5%87%BA%E8%8D%B7%E5%8F%B0%E6%95%B0%E8%AA%BF%E6%9F%BB%E3%80%8D%E3%81%AE%E7%B5%90%E6%9E%9C%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.nikkei.com/article/DGXZRSP702981_S6A210C2000000/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">成田空港「第2の開港」 騒音対策・地域振興の強化、周辺市町求める</div>
+                        <div class="news-meta">2026年02月13日 | 朝日新聞デジタル</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">騒音について、滑走路が新設される芝山町の麻生孝之町長は「午後10時以降の航空機離着陸が倍になると想定される。取り組みが十分とはいえない」として、対策の拡充を要求。 多古町 の平山富子町長も「地域住民と...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            騒音について、滑走路が新設される芝山町の麻生孝之町長は「午後10時以降の航空機離着陸が倍になると想定される。取り組みが十分とはいえない」として、対策の拡充を要求。 多古町 の平山富子町長も「地域住民と意見を交わしながら実施を」と注文を付けた。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「成田空港「第2の開港」 騒音対...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF%E3%80%8C%E7%AC%AC2%E3%81%AE%E9%96%8B%E6%B8%AF%E3%80%8D%20%E9%A8%92%E9%9F%B3%E5%AF%BE%E7%AD%96%E3%83%BB%E5%9C%B0%E5%9F%9F%E6%8C%AF%E8%88%88%E3%81%AE%E5%BC%B7%E5%8C%96%E3%80%81%E5%91%A8%E8%BE%BA%E5%B8%82%E7%94%BA%E6%B1%82%E3%82%81%E3%82%8B" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.asahi.com/articles/ASV2D3WDPV2DUDCB001M.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">4人に1人が道路騒音に悩み。そのうち睡眠妨害やストレスを訴える ...</div>
+                        <div class="news-meta">2026年02月10日 | 産経ニュース</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">今回の調査では、約4人に1人が自宅周辺の道路騒音を気にしたことがあり、そのうち4割以上が実際に生活に支障をきたしていることがわかりました。睡眠妨害やストレスを感じている人が約7割と多く、道路騒音が日常...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            今回の調査では、約4人に1人が自宅周辺の道路騒音を気にしたことがあり、そのうち4割以上が実際に生活に支障をきたしていることがわかりました。睡眠妨害やストレスを感じている人が約7割と多く、道路騒音が日常生活の質に大きな影響を与えています。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「4人に1人が道路騒音に悩み。そ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=4%E4%BA%BA%E3%81%AB1%E4%BA%BA%E3%81%8C%E9%81%93%E8%B7%AF%E9%A8%92%E9%9F%B3%E3%81%AB%E6%82%A9%E3%81%BF%E3%80%82%E3%81%9D%E3%81%AE%E3%81%86%E3%81%A1%E7%9D%A1%E7%9C%A0%E5%A6%A8%E5%AE%B3%E3%82%84%E3%82%B9%E3%83%88%E3%83%AC%E3%82%B9%E3%82%92%E8%A8%B4%E3%81%88%E3%82%8B%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.sankei.com/pressrelease/prtimes/CV4D736SDVJQNPVH6YMAREC674/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">受動喫煙対策 規制強化は時代の要請だろう</div>
+                        <div class="news-meta">2026年02月13日 | 読売新聞オンライン</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">受動喫煙対策 規制強化は時代の要請だろう...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            受動喫煙対策 規制強化は時代の要請だろう
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「受動喫煙対策 規制強化は時代の...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E5%8F%97%E5%8B%95%E5%96%AB%E7%85%99%E5%AF%BE%E7%AD%96%20%E8%A6%8F%E5%88%B6%E5%BC%B7%E5%8C%96%E3%81%AF%E6%99%82%E4%BB%A3%E3%81%AE%E8%A6%81%E8%AB%8B%E3%81%A0%E3%82%8D%E3%81%86" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.msn.com/ja-jp/news/national/受動喫煙対策-規制強化は時代の要請だろう/ar-AA1Wj9nh" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">世界的デザイナー吉井秀雄氏が手掛ける革新衣料「FREEZETECH Air」が ...</div>
+                        <div class="news-meta">2026年02月13日 | PR TIMES</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">「FREEZETECH Air」のデザインは、国内外から高い評価を得るユニフォームデザイナーであるハイドサイン株式会社代表の吉井秀雄氏が手掛けています。吉井氏は国際的デザインアワード「 The Vog...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            「FREEZETECH Air」のデザインは、国内外から高い評価を得るユニフォームデザイナーであるハイドサイン株式会社代表の吉井秀雄氏が手掛けています。吉井氏は国際的デザインアワード「 The Vogue Business 2025 100 Innovators 」に選出されるなど、世界から注目される日本を代表するデザイナーです。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「世界的デザイナー吉井秀雄氏が手...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E4%B8%96%E7%95%8C%E7%9A%84%E3%83%87%E3%82%B6%E3%82%A4%E3%83%8A%E3%83%BC%E5%90%89%E4%BA%95%E7%A7%80%E9%9B%84%E6%B0%8F%E3%81%8C%E6%89%8B%E6%8E%9B%E3%81%91%E3%82%8B%E9%9D%A9%E6%96%B0%E8%A1%A3%E6%96%99%E3%80%8CFREEZETECH%20Air%E3%80%8D%E3%81%8C%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://prtimes.jp/main/html/rd/p/000000217.000052173.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">2026年2月13日のヘッドラインニュース</div>
+                        <div class="news-meta">2026年02月13日 | GIGAZINE</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">マクドナルドの「チーズチーズダブルチーズバーガー(チーチーダブチ)」が2026年2月18日(水)から2週間限定で復活することになりました。チーチーダブチは、ビーフパティ2枚にチェダーチーズ2枚をサンド...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            マクドナルドの「チーズチーズダブルチーズバーガー(チーチーダブチ)」が2026年2月18日(水)から2週間限定で復活することになりました。チーチーダブチは、ビーフパティ2枚にチェダーチーズ2枚をサンドした「ダブルチーズバーガー」をベースに、ホワイトチェダーチーズを2枚加え、2種類・4枚のチーズが重なり合う一品。これまでも期間限定で登場しては好評を博した品で、今回も2026年3月3日(火)までの限定
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「2026年2月13日のヘッドラ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「業界動向・市場予測」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=2026%E5%B9%B42%E6%9C%8813%E6%97%A5%E3%81%AE%E3%83%98%E3%83%83%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://gigazine.net/news/20260213-headline/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">注目製品・技術</h3>
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">ソニー広報note、「WF-1000XM6」で採用した"体内ノイズ"減らす ...</div>
+                        <div class="news-meta">2026年02月13日 | AV Watch</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">ソニーは13日、同社の製品やサービスに込めた開発者の想いや裏話などを掲載する「広報note」において、同日に発表した完全ワイヤレスイヤフォン最上位モデル「WF-1000XM6」で採用した「体内ノイズを...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            ソニーは13日、同社の製品やサービスに込めた開発者の想いや裏話などを掲載する「広報note」において、同日に発表した完全ワイヤレスイヤフォン最上位モデル「WF-1000XM6」で採用した「体内ノイズを減らす工夫」について紹介している。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「ソニー広報note、「WF-1...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%82%BD%E3%83%8B%E3%83%BC%E5%BA%83%E5%A0%B1note%E3%80%81%E3%80%8CWF-1000XM6%E3%80%8D%E3%81%A7%E6%8E%A1%E7%94%A8%E3%81%97%E3%81%9F%22%E4%BD%93%E5%86%85%E3%83%8E%E3%82%A4%E3%82%BA%22%E6%B8%9B%E3%82%89%E3%81%99%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://av.watch.impress.co.jp/docs/news/2085627.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">FIIO、独自R2R DAC搭載、Bluetooth受信も可能なUSB DAC「BR15 R2R」</div>
+                        <div class="news-meta">2026年02月13日 | AV Watch</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">エミライは、FIIOの新製品として、独自開発のフルバランス24bit R2R DACを搭載し、Bluetooth受信機能も搭載したUSB DAC「BR15 R2R」を2月20日に発売する。価格はオープ...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            エミライは、FIIOの新製品として、独自開発のフルバランス24bit R2R DACを搭載し、Bluetooth受信機能も搭載したUSB DAC「BR15 R2R」を2月20日に発売する。価格はオープンで、市場想定価格は39,600円前後。カラーはブラックとシルバー。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「FIIO、独自R2R DAC搭...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=FIIO%E3%80%81%E7%8B%AC%E8%87%AAR2R%20DAC%E6%90%AD%E8%BC%89%E3%80%81Bluetooth%E5%8F%97%E4%BF%A1%E3%82%82%E5%8F%AF%E8%83%BD%E3%81%AAUSB%20DAC%E3%80%8CBR15%20R2R%E3%80%8D" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://av.watch.impress.co.jp/docs/news/2085427.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">ソニー最上位完全ワイヤレス「WF-1000XM6」。装着状態に左右され ...</div>
+                        <div class="news-meta">2026年02月13日 | AV Watch</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">ソニーは、完全ワイヤレスイヤフォンの最上位モデル「WF-1000XM6」を、2月27日に発売する。カラーはブラックとプラチナシルバーの2色で、価格はオープン。直販価格は44,550円。ノイズキャンセリ...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            ソニーは、完全ワイヤレスイヤフォンの最上位モデル「WF-1000XM6」を、2月27日に発売する。カラーはブラックとプラチナシルバーの2色で、価格はオープン。直販価格は44,550円。ノイズキャンセリング性能を強化したほか、マスタリングエンジニアとの"共創"により音質も磨きをかけたという。 試聴のファーストインプレッションについては別記事で掲載している。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「ソニー最上位完全ワイヤレス「W...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%82%BD%E3%83%8B%E3%83%BC%E6%9C%80%E4%B8%8A%E4%BD%8D%E5%AE%8C%E5%85%A8%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%80%8CWF-1000XM6%E3%80%8D%E3%80%82%E8%A3%85%E7%9D%80%E7%8A%B6%E6%85%8B%E3%81%AB%E5%B7%A6%E5%8F%B3%E3%81%95%E3%82%8C%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.msn.com/ja-jp/lifestyle/shopping/ソニー最上位完全ワイヤレス-wf-1000xm6-装着状態に左右されにくい世界最高クラスノイキャン/ar-AA1Wf3hn" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">オンライン会議で「声の届け方」をマネジメント。AIが騒音を判別 ...</div>
+                        <div class="news-meta">2026年02月12日 | ライフハッカー・ジャパン</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">オンライン会議での周囲の騒音や、長時間のイヤホン装着による耳の痛みにお悩みの方へ。環境音を82％除去するヘッドセット「MAGIC MIC III」をレビュー。軽量88gの快適な着け心地と、クリアな音声...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            オンライン会議での周囲の騒音や、長時間のイヤホン装着による耳の痛みにお悩みの方へ。環境音を82％除去するヘッドセット「MAGIC MIC III」をレビュー。軽量88gの快適な着け心地と、クリアな音声を実現する最新技術で、オフィスでも自宅でもストレスフリーな会議環境が手に入ります。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「オンライン会議で「声の届け方」...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E4%BC%9A%E8%AD%B0%E3%81%A7%E3%80%8C%E5%A3%B0%E3%81%AE%E5%B1%8A%E3%81%91%E6%96%B9%E3%80%8D%E3%82%92%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%80%82AI%E3%81%8C%E9%A8%92%E9%9F%B3%E3%82%92%E5%88%A4%E5%88%A5%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.lifehacker.jp/article/2602-magicmic3-lh-editorialreview-1786907395/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">ソニー、高機能ノイズキャンセリング機能を備えた完全ワイヤレス ...</div>
+                        <div class="news-meta">2026年02月13日 | ITmedia</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">ソニーは2月13日、高機能ノイズキャンセリング機能を利用可能な完全ワイヤレスイヤフォン「WF-1000XM6」を発表、2月27日に販売を開始する。カラーバリエーションは"ブラック"と"プラチナシルバー...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            ソニーは2月13日、高機能ノイズキャンセリング機能を利用可能な完全ワイヤレスイヤフォン「WF-1000XM6」を発表、2月27日に販売を開始する。カラーバリエーションは"ブラック"と"プラチナシルバー"の2色を用意した。価格はオープン、同社Web直販「ソニーストア」販売価格は4万4550円だ（税込み）。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「ソニー、高機能ノイズキャンセリ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%82%BD%E3%83%8B%E3%83%BC%E3%80%81%E9%AB%98%E6%A9%9F%E8%83%BD%E3%83%8E%E3%82%A4%E3%82%BA%E3%82%AD%E3%83%A3%E3%83%B3%E3%82%BB%E3%83%AA%E3%83%B3%E3%82%B0%E6%A9%9F%E8%83%BD%E3%82%92%E5%82%99%E3%81%88%E3%81%9F%E5%AE%8C%E5%85%A8%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.itmedia.co.jp/pcuser/articles/2602/13/news077.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">ソニー完全ワイヤレス「WF-1000XM6」発表。2年5カ月ぶりの進化はノイキャン性能と充電ケースにあり</div>
+                        <div class="news-meta">2026年02月13日 | Business Insider Japan</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">ソニーが新型ワイヤレスイヤホン「WF-1000XM6」を発表しました。最新チップ「QN3e」によるノイズキャンセリング性能の向上に加え、三菱商事らと連携した再生プラスチックの採用など、最新の進化を解説...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            ソニーが新型ワイヤレスイヤホン「WF-1000XM6」を発表しました。最新チップ「QN3e」によるノイズキャンセリング性能の向上に加え、三菱商事らと連携した再生プラスチックの採用など、最新の進化を解説します。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「ソニー完全ワイヤレス「WF-1...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%82%BD%E3%83%8B%E3%83%BC%E5%AE%8C%E5%85%A8%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%80%8CWF-1000XM6%E3%80%8D%E7%99%BA%E8%A1%A8%E3%80%822%E5%B9%B45%E3%82%AB%E6%9C%88%E3%81%B6%E3%82%8A%E3%81%AE%E9%80%B2%E5%8C%96%E3%81%AF%E3%83%8E%E3%82%A4%E3%82%AD%E3%83%A3%E3%83%B3%E6%80%A7%E8%83%BD%E3%81%A8%E5%85%85%E9%9B%BB%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%AB%E3%81%82%E3%82%8A" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.msn.com/ja-jp/lifestyle/shopping/ソニー完全ワイヤレス-wf-1000xm6-発表-2年5カ月ぶりの進化はノイキャン性能と充電ケースにあり/ar-AA1WftBt" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">『ブルーアーカイブ』より、「ワカモ」録り下ろしボイスを搭載し ...</div>
+                        <div class="news-meta">2026年02月13日 | CNET Japan</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">オンキヨー株式会社（所在地：大阪府大阪市、代表取締役社長：大朏 宗徳）は、コラボ第３弾としてANC（アクティブノイズキャンセリング）搭載完全ワイヤレスイヤホン「CP-TWS01E」とスマートフォンゲー...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            オンキヨー株式会社（所在地：大阪府大阪市、代表取締役社長：大朏 宗徳）は、コラボ第３弾としてANC（アクティブノイズキャンセリング）搭載完全ワイヤレスイヤホン「CP-TWS01E」とスマートフォンゲーム『ブルーアーカイブ -Blue Archive-※1』とのコラボレーションモデルを、2月14日（土）15時より受注販売いたします。 本コラボレーションモデルは、コラボ第3弾として「ブルーアーカイブv
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「『ブルーアーカイブ』より、「ワ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「注目製品・技術」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%80%8E%E3%83%96%E3%83%AB%E3%83%BC%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%A4%E3%83%96%E3%80%8F%E3%82%88%E3%82%8A%E3%80%81%E3%80%8C%E3%83%AF%E3%82%AB%E3%83%A2%E3%80%8D%E9%8C%B2%E3%82%8A%E4%B8%8B%E3%82%8D%E3%81%97%E3%83%9C%E3%82%A4%E3%82%B9%E3%82%92%E6%90%AD%E8%BC%89%E3%81%97%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://japan.cnet.com/release/31147350/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <h3 style="font-size: 18px; font-weight:800; color: #666; margin-top: 50px; border-bottom:2px solid #ddd; padding-bottom:10px; margin-bottom: 30px;">顧客・競合動向</h3>
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">大手ゼネコン4社第3四半期決算/採算性改善で好調/3社は利益上方修正</div>
+                        <div class="news-meta">2026年02月12日 | 建設通信新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">上場大手ゼネコン４社の２０２６年３月期第３四半期決算が１２日までに出そろった。各社ともに国内土木・建築の手持ち工事の受注時や施工段階の採算性向上に加え、設計変更の獲得が業績に寄与した。連結の各段階利益...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            上場大手ゼネコン４社の２０２６年３月期第３四半期決算が１２日までに出そろった。各社ともに国内土木・建築の手持ち工事の受注時や施工段階の採算性向上に加え、設計変更の獲得が業績に寄与した。連結の各段階利益は全社で増加。純利益は全社、営業利益、経常利益は鹿島、大林組、大成建設が過去最高となった。　連結売上高は、鹿島と清水建設が増収、大林組と大成建設が減収と分かれたが、高い水準を維持する。鹿島は過去最高を
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「大手ゼネコン4社第3四半期決算...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E5%A4%A7%E6%89%8B%E3%82%BC%E3%83%8D%E3%82%B3%E3%83%B34%E7%A4%BE%E7%AC%AC3%E5%9B%9B%E5%8D%8A%E6%9C%9F%E6%B1%BA%E7%AE%97/%E6%8E%A1%E7%AE%97%E6%80%A7%E6%94%B9%E5%96%84%E3%81%A7%E5%A5%BD%E8%AA%BF/3%E7%A4%BE%E3%81%AF%E5%88%A9%E7%9B%8A%E4%B8%8A%E6%96%B9%E4%BF%AE%E6%AD%A3" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.kensetsunews.com/archives/1184578" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">鹿島、最高益見通しを上方修正 国内建築好調で純利益35%増</div>
+                        <div class="news-meta">2026年02月12日 | 日本経済新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">鹿島は12日、2026年3月期の連結純利益が前期比35%増の1700億円になる見通しだと発表した。過去最高を見込んでいた従来予想から150億円上方修正した。国内の建築工事が順調に進捗し追加工事も獲得で...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            鹿島は12日、2026年3月期の連結純利益が前期比35%増の1700億円になる見通しだと発表した。過去最高を見込んでいた従来予想から150億円上方修正した。国内の建築工事が順調に進捗し追加工事も獲得できている。コスト削減策も奏功する。事前の市場予想平均（QUICKコンセンサス、1553億円）を上回った。売上高は4%増の3兆300億円、営業利益は50%増の2280億円を見込む。それぞれ300億円
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「鹿島、最高益見通しを上方修正 ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E9%B9%BF%E5%B3%B6%E3%80%81%E6%9C%80%E9%AB%98%E7%9B%8A%E8%A6%8B%E9%80%9A%E3%81%97%E3%82%92%E4%B8%8A%E6%96%B9%E4%BF%AE%E6%AD%A3%20%E5%9B%BD%E5%86%85%E5%BB%BA%E7%AF%89%E5%A5%BD%E8%AA%BF%E3%81%A7%E7%B4%94%E5%88%A9%E7%9B%8A35%25%E5%A2%97" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.nikkei.com/article/DGXZQOUB10AN70Q6A210C2000000/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">長谷工の25年4〜12月期、純利益2.1倍 通期予想据え置き</div>
+                        <div class="news-meta">2026年02月12日 | 日本経済新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">長谷工コーポレーションが12日発表した2025年4〜12月期の連結決算で、純利益は前年同期比2.1倍の382億5500万円となった。2026年3月期通期の純利益予想は据え置いた。純利益は前期比68.4...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            長谷工コーポレーションが12日発表した2025年4〜12月期の連結決算で、純利益は前年同期比2.1倍の382億5500万円となった。2026年3月期通期の純利益予想は据え置いた。純利益は前期比68.4%増の580億円を見込む。アナリスト予想の平均であるQUICKコンセンサスは607億300万円だった。長谷工は首都圏マンション新規供給戸数に対して30%程度（25/3期）と高い施工シェアをもつ、分
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「長谷工の25年4〜12月期、純...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E9%95%B7%E8%B0%B7%E5%B7%A5%E3%81%AE25%E5%B9%B44%E3%80%9C12%E6%9C%88%E6%9C%9F%E3%80%81%E7%B4%94%E5%88%A9%E7%9B%8A2.1%E5%80%8D%20%E9%80%9A%E6%9C%9F%E4%BA%88%E6%83%B3%E6%8D%AE%E3%81%88%E7%BD%AE%E3%81%8D" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.nikkei.com/article/DGXZRST0555903S6A210C2000000/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">デジタル変革とさまざまなセキュリティ対策を両立し、継続的に ...</div>
+                        <div class="news-meta">2026年02月09日 | ITmedia エグゼクティブ</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">規模の大小を問わず、多くの企業が深刻なセキュリティ人材不足に直面している。ゼネコン大手の竹中工務店も例外ではない。しかも建設業の裾野は広く、大小さまざまな協力会社からなる複合的なサプライチェーン全体で...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            規模の大小を問わず、多くの企業が深刻なセキュリティ人材不足に直面している。ゼネコン大手の竹中工務店も例外ではない。しかも建設業の裾野は広く、大小さまざまな協力会社からなる複合的なサプライチェーン全体で、ガバナンスを効かせなくてはならないという、特殊な課題もある。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「デジタル変革とさまざまなセキュ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E5%A4%89%E9%9D%A9%E3%81%A8%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%AF%BE%E7%AD%96%E3%82%92%E4%B8%A1%E7%AB%8B%E3%81%97%E3%80%81%E7%B6%99%E7%B6%9A%E7%9A%84%E3%81%AB%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://mag.executive.itmedia.co.jp/executive/articles/2602/10/news024.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">住宅密集地の<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>、江東区でも問題化 水害リスクあるの ...</div>
+                        <div class="news-meta">2026年02月11日 | 東京新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">衆院選の投開票が行われた8日夜。東京都江東区の千石3丁目でDC建設を計画する事業者による住民向けの説明会が、同区の小松橋区民館であった。だが、計画への懸念点は完全には払拭されず、出席者にはもどかしさが...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            衆院選の投開票が行われた8日夜。東京都江東区の千石3丁目でDC建設を計画する事業者による住民向けの説明会が、同区の小松橋区民館であった。だが、計画への懸念点は完全には払拭されず、出席者にはもどかしさが残った。 DCには、大量の計算を同時に実行するための画像処理装置（GPU）を使ったサーバーが数多く配置される。大量の電力消費を伴うだけでなく、サーバーを冷やす空調設備からの排熱や騒音、DCの建物の高さがもたらす日照権の問題、非常用電源の燃料となる重油貯蔵の安全性などの問題があり、住宅密集地での建設計画に対する住民の不安が各地で高まっている。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「住宅密集地の<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>、江...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E4%BD%8F%E5%AE%85%E5%AF%86%E9%9B%86%E5%9C%B0%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%80%81%E6%B1%9F%E6%9D%B1%E5%8C%BA%E3%81%A7%E3%82%82%E5%95%8F%E9%A1%8C%E5%8C%96%20%E6%B0%B4%E5%AE%B3%E3%83%AA%E3%82%B9%E3%82%AF%E3%81%82%E3%82%8B%E3%81%AE%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.tokyo-np.co.jp/article/468145" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title"><details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の地方分散が加速、電力不足の懸念</div>
+                        <div class="news-meta">2026年02月12日 | 財経新聞</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">最新の人工知能向け<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>は、膨大な計算処理を支えるために従来の数倍の電力を消費する。2026年には<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>全体の電力需要が国内の総消費電力の数パーセントを占め始めるとの予測もあり、一部の...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            最新の人工知能向け<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>は、膨大な計算処理を支えるために従来の数倍の電力を消費する。2026年には<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>全体の電力需要が国内の総消費電力の数パーセントを占め始めるとの予測もあり、一部の自治体では地域全体の消費電力を一施設で上回るような建設計画も浮上している。これにより、既存の送電網の容量が限界に達し、新規建設が制限されるだけでなく、将来的には地域住民への電力供給コストや安定性に影響を与えかねないリスクが顕在化しつつある。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の地方分散が加速...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E5%9C%B0%E6%96%B9%E5%88%86%E6%95%A3%E3%81%8C%E5%8A%A0%E9%80%9F%E3%80%81%E9%9B%BB%E5%8A%9B%E4%B8%8D%E8%B6%B3%E3%81%AE%E6%87%B8%E5%BF%B5" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://zaikei.co.jp/article/20260212/842973.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">CTCと三菱総研、APNと「TiDB」で分散型<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の動作・性能 ...</div>
+                        <div class="news-meta">2026年02月10日 | IT Leaders</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">伊藤忠テクノソリューションズは2026年2月9日、三菱総合研究所と共同で、全光ネットワーク（APN）と分散型データベースを用いて、分散型<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の検証を実施したと発表した。電力消費を抑制しながら...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            伊藤忠テクノソリューションズは2026年2月9日、三菱総合研究所と共同で、全光ネットワーク（APN）と分散型データベースを用いて、分散型<details class="inline-term" style="display:inline;"><summary style="list-style:none; cursor:help; border-bottom:2px dotted #888; display:inline;">データセンター</summary><div class="term-content" style="background:#e3f2fd; color:#0d47a1; padding:12px; border-radius:6px; margin:8px 0 15px 0; font-size:14px; border-left:4px solid #1976d2;"><div style="margin-bottom:8px;"><b>💡 AI用語解説:</b> 大量のサーバーを設置・運用する施設。冷却設備の騒音が課題。</div><a href="https://www.google.com/search?q=%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC" target="_blank" style="display:inline-block; font-size:12px; color:#fff; background-color:#1976d2; padding:4px 10px; border-radius:15px; text-decoration:none;">🔍 裏付け検索 (Google)</a></div></details>の検証を実施したと発表した。電力消費を抑制しながらデータ処理能力を高めるインフラの構築を目指すとしている。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「CTCと三菱総研、APNと「T...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=CTC%E3%81%A8%E4%B8%89%E8%8F%B1%E7%B7%8F%E7%A0%94%E3%80%81APN%E3%81%A8%E3%80%8CTiDB%E3%80%8D%E3%81%A7%E5%88%86%E6%95%A3%E5%9E%8B%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E5%8B%95%E4%BD%9C%E3%83%BB%E6%80%A7%E8%83%BD%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://it.impress.co.jp/articles/-/28973" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">騒音スペクトラムアナライザの成長予測：2032年には1757百万米ドル ...</div>
+                        <div class="news-meta">2026年02月09日 | CNET Japan</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">騒音スペクトラムアナライザ市場の競争環境と成長要因を分析した最新レポートを公開! 騒音スペクトラムアナライザは、騒音（音圧レベル）を周波数成分に分解して分析・表示する測定器であり、主に環境騒音の評価、...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            騒音スペクトラムアナライザ市場の競争環境と成長要因を分析した最新レポートを公開! 騒音スペクトラムアナライザは、騒音（音圧レベル）を周波数成分に分解して分析・表示する測定器であり、主に環境騒音の評価、機械の異音診断、音響製品の開発・品質管理などに用いられます。 YH Researchの分析によれば、世界の騒音スペクトラムアナライザ市場は2025年に1101百万米ドルと推計され、2026年には117
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「騒音スペクトラムアナライザの成...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E9%A8%92%E9%9F%B3%E3%82%B9%E3%83%9A%E3%82%AF%E3%83%88%E3%83%A9%E3%83%A0%E3%82%A2%E3%83%8A%E3%83%A9%E3%82%A4%E3%82%B6%E3%81%AE%E6%88%90%E9%95%B7%E4%BA%88%E6%B8%AC%EF%BC%9A2032%E5%B9%B4%E3%81%AB%E3%81%AF1757%E7%99%BE%E4%B8%87%E7%B1%B3%E3%83%89%E3%83%AB%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://japan.cnet.com/release/31146241/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">IoT連携と予知保全が進化を加速、2031年6.52億ドル市場を形成する ...</div>
+                        <div class="news-meta">2026年02月13日 | RBB TODAY</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">ロータリーインデクサは、間欠運動を実現する回転運動機器である。精度、速度、寿命はロータリーインデクサにとって三つの重要な要素である。ロータリーインデクサは伝達トルクが大きく、位置決め精度が高く、高速運...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            ロータリーインデクサは、間欠運動を実現する回転運動機器である。精度、速度、寿命はロータリーインデクサにとって三つの重要な要素である。ロータリーインデクサは伝達トルクが大きく、位置決め精度が高く、高速運転がスムーズで、位置決め自動ロック機能を持ち、騒音が低いなどの顕著な特徴を備えており、ゼネバ機構、不完全歯車機構、ラチェット機構などの伝統的な間欠機構に取って代わる理想的な製品である。ロータリーインデ
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「IoT連携と予知保全が進化を加...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=IoT%E9%80%A3%E6%90%BA%E3%81%A8%E4%BA%88%E7%9F%A5%E4%BF%9D%E5%85%A8%E3%81%8C%E9%80%B2%E5%8C%96%E3%82%92%E5%8A%A0%E9%80%9F%E3%80%812031%E5%B9%B46.52%E5%84%84%E3%83%89%E3%83%AB%E5%B8%82%E5%A0%B4%E3%82%92%E5%BD%A2%E6%88%90%E3%81%99%E3%82%8B%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rbbtoday.com/release/dreamnews/20260213/1208367.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">2026年に注目したい「オープンイヤー型ワイヤレスイヤフォン ...</div>
+                        <div class="news-meta">2026年02月10日 | ITmedia</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">FreeClipには新モデルの 「FreeClip 2」 があり、2025年12月から クラウドファンディングを開始 。2026年1月末時点で目標を大きく上回る9700万円の支援を集めています。前モデ...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            FreeClipには新モデルの 「FreeClip 2」 があり、2025年12月から クラウドファンディングを開始 。2026年1月末時点で目標を大きく上回る9700万円の支援を集めています。前モデルよりコンパクトになり、柔軟性は約25％向上。長時間装着していても負担をほとんど感じないとのこと。音質もさらに向上しているようです。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「2026年に注目したい「オープ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=2026%E5%B9%B4%E3%81%AB%E6%B3%A8%E7%9B%AE%E3%81%97%E3%81%9F%E3%81%84%E3%80%8C%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%A4%E3%83%A4%E3%83%BC%E5%9E%8B%E3%83%AF%E3%82%A4%E3%83%A4%E3%83%AC%E3%82%B9%E3%82%A4%E3%83%A4%E3%83%95%E3%82%A9%E3%83%B3%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.itmedia.co.jp/fav/articles/2602/10/news106.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">ブランドロケット支援によるクラウドファンディングプロジェクト ...</div>
+                        <div class="news-meta">2026年02月12日 | ORICON NEWS</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">2025年度 クラウドファンディング売上TOP3*を発表! 新規ブランドのローンチから軌道に乗せるまでの支援に特化した専門集団、株式会社ブランドロケット（本社：東京都目黒区、代表取締役：道端孝助、以下...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            2025年度 クラウドファンディング売上TOP3*を発表! 新規ブランドのローンチから軌道に乗せるまでの支援に特化した専門集団、株式会社ブランドロケット（本社：東京都目黒区、代表取締役：道端孝助、以下：ブランドロケット）は、2026年最初にクラウドファンディングサービス「Makuake」にて実施したプロジェクト、「世界的ヘルメットブランド『SHOEI』の挑戦!一生の旅を守るキャリーケース」が、多く
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「ブランドロケット支援によるクラ...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E3%83%96%E3%83%A9%E3%83%B3%E3%83%89%E3%83%AD%E3%82%B1%E3%83%83%E3%83%88%E6%94%AF%E6%8F%B4%E3%81%AB%E3%82%88%E3%82%8B%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%83%95%E3%82%A1%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.oricon.co.jp/pressrelease/2675841/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">2種の外骨格を装着してレースをしたら、明確な「勝者」がわかった</div>
+                        <div class="news-meta">2026年02月12日 | WIRED.jp</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">2種類の外骨格を用いたことで、性能比較と知覚的運動強度の検討が可能になった。スプリントレースには遊び心も含まれていたが、装着時間が長くなるほど、外骨格が果たしている役割と、その動作時の身体感覚が明確に...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            2種類の外骨格を用いたことで、性能比較と知覚的運動強度の検討が可能になった。スプリントレースには遊び心も含まれていたが、装着時間が長くなるほど、外骨格が果たしている役割と、その動作時の身体感覚が明確になっていった。
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「2種の外骨格を装着してレースを...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=2%E7%A8%AE%E3%81%AE%E5%A4%96%E9%AA%A8%E6%A0%BC%E3%82%92%E8%A3%85%E7%9D%80%E3%81%97%E3%81%A6%E3%83%AC%E3%83%BC%E3%82%B9%E3%82%92%E3%81%97%E3%81%9F%E3%82%89%E3%80%81%E6%98%8E%E7%A2%BA%E3%81%AA%E3%80%8C%E5%8B%9D%E8%80%85%E3%80%8D%E3%81%8C%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%9F" target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://wired.jp/article/we-raced-exoskeletons-and-theres-one-clear-winner/" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="news-card">
+                <details>
+                    <summary class="news-summary-header">
+                        <div class="news-title">社会インフラ老朽化が需要を加速：AI異常検知時代の傾斜計市場 ...</div>
+                        <div class="news-meta">2026年02月12日 | RBB TODAY</div>
+                        
+                        <div class="news-point-area">
+                            <span class="point-badge">💡 要点</span>
+                            <span class="point-text">傾斜計とは、物体や構造物の傾斜角度や傾きの変化を計測する機器である。機械式、光学式、電気式など多様な原理を利用し、重力方向に対する相対的な角度変化を検出する。高い測定精度と長期的な安定性を備え、振動や...</span>
+                        </div>
+
+                        <span class="read-more-indicator">▼ 続きを読む（解説・トーク）</span>
+                    </summary>
+                    
+                    <div class="news-content-wrapper">
+                        <div class="news-body-area">
+                            傾斜計とは、物体や構造物の傾斜角度や傾きの変化を計測する機器である。機械式、光学式、電気式など多様な原理を利用し、重力方向に対する相対的な角度変化を検出する。高い測定精度と長期的な安定性を備え、振動や温度変化に対する耐性にも優れるため、定常的な状態監視から動的な変化計測まで幅広く対応可能。土木・建築分野の構造物維持管理、鉱山や工場の設備監視、輸送機器の姿勢制御など、安全性と精度が要求される場面で不
+                        </div>
+                        
+                        <div class="sales-action-area"><span class="sales-label">🎯 営業アクションのヒント</span>
+                    <div class="sales-talk-box">
+                        <span class="talk-icon">💬</span>
+                        <div class="talk-content">最近「社会インフラ老朽化が需要を加速...」という記事が出ていましたが、御社の関連プロジェクトへの影響はいかがでしょうか？</div>
+                    </div>
+                    
+                    <div class="sales-hint-box">
+                        <span class="hint-icon">📌</span> 記事のキーワードを顧客との雑談のネタとして活用してください。
+                    </div>
+                    </div>
+                        
+                        <div class="trust-area">
+                            <div class="trust-area">
+        <div class="reasoning-box">
+            <span class="reasoning-label">💡 AI選定理由 (なぜこの情報？)</span>
+            【自動選定】「顧客・競合動向」に関連する最新動向として検出されました。
+        </div>
+        </div><div class="action-buttons" style="margin-top:10px;"><a href="https://www.google.com/search?q=%E7%A4%BE%E4%BC%9A%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E8%80%81%E6%9C%BD%E5%8C%96%E3%81%8C%E9%9C%80%E8%A6%81%E3%82%92%E5%8A%A0%E9%80%9F%EF%BC%9AAI%E7%95%B0%E5%B8%B8%E6%A4%9C%E7%9F%A5%E6%99%82%E4%BB%A3%E3%81%AE%E5%82%BE%E6%96%9C%E8%A8%88%E5%B8%82%E5%A0%B4%20..." target="_blank" class="link-btn link-btn-evidence">🔍 裏付け検索</a><a href="https://www.rbbtoday.com/release/dreamnews/20260212/1206820.html" target="_blank" class="link-btn link-btn-source">元記事 ⧉</a></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+                </div>
+            </div>
+            <div class="footer">Sasakura AE Sales Support</div>
+        </div>
+    </body>
+    </html>
+    

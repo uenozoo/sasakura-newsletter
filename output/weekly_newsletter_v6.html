@@ -1,0 +1,338 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Noise Control Industry Weekly</title>
+        <style>
+            /* Reset & Base */
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.7; /* 読みやすさのため行間を少し広げる */
+                color: #333;
+                background-color: #f2f2f7;
+                margin: 0;
+                padding: 0;
+                -webkit-text-size-adjust: 100%;
+            }
+            
+            /* Container */
+            .wrapper {
+                width: 100%;
+                background-color: #f2f2f7;
+                padding: 40px 0;
+            }
+            .container {
+                max-width: 680px; /* 文字サイズに合わせて少し幅を広げる */
+                margin: 0 auto;
+                background-color: #ffffff;
+                border-radius: 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                overflow: hidden;
+            }
+            
+            /* Header */
+            .header {
+                background: linear-gradient(135deg, #003366 0%, #0056b3 100%);
+                padding: 50px 30px; /* 余白を増やす */
+                text-align: center;
+                color: white;
+            }
+            .brand {
+                font-size: 13px; /* 少し大きく */
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0.9;
+                margin-bottom: 15px;
+            }
+            .title {
+                font-size: 32px; /* 大きく */
+                font-weight: 800;
+                margin: 0 0 15px 0;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            }
+            .period {
+                font-size: 16px; /* 大きく */
+                background-color: rgba(255,255,255,0.25);
+                display: inline-block;
+                padding: 6px 16px;
+                border-radius: 24px;
+                font-weight: 500;
+            }
+
+            /* Content Area */
+            .content {
+                padding: 40px; /* 余白を増やす */
+            }
+            
+            /* Sections */
+            .section-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 25px;
+                margin-top: 50px;
+            }
+            .section-header:first-child {
+                margin-top: 0;
+            }
+            .section-icon {
+                font-size: 24px; /* 大きく */
+                margin-right: 14px;
+            }
+            .section-title {
+                font-size: 22px; /* 大きく */
+                font-weight: 700;
+                color: #111;
+                letter-spacing: -0.01em;
+            }
+            
+            /* Cards */
+            .card {
+                background-color: #fff;
+                border: 1px solid #e1e1e6;
+                border-radius: 16px;
+                padding: 28px; /* 余白を増やす */
+                margin-bottom: 24px;
+            }
+            .summary-card {
+                background-color: #f5f9ff;
+                border: none;
+                border-left: 5px solid #0056b3;
+            }
+            .proposal-card {
+                background-color: #fffbf0;
+                border: none;
+                border-left: 5px solid #ff9500;
+            }
+            
+            /* Content Text */
+            .text-content {
+                font-size: 17px; /* 本文サイズを大きく */
+                color: #333;
+            }
+            .text-content ul {
+                padding-left: 24px;
+                margin: 0;
+            }
+            .text-content li {
+                margin-bottom: 12px;
+            }
+            .text-content a {
+                color: #0056b3;
+                text-decoration: underline;
+                font-weight: 500;
+            }
+            
+            /* Chart */
+            .chart-header {
+                font-size: 15px;
+                font-weight: 600;
+                color: #555;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            .chart-container {
+                text-align: center;
+                margin: 25px 0;
+            }
+            .chart-img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 12px;
+                border: 1px solid #eee;
+            }
+            .source-note {
+                font-size: 11px;
+                color: #888;
+                text-align: right;
+                margin-top: 8px;
+                display: block;
+            }
+
+            /* News Items */
+            .news-card {
+                margin-bottom: 35px;
+                padding-bottom: 30px;
+                border-bottom: 1px solid #eee;
+            }
+            .news-title a {
+                color: #0056b3;
+                text-decoration: none;
+                font-size: 20px; /* 大きく */
+                font-weight: 700;
+                line-height: 1.4;
+                display: block;
+                margin-bottom: 8px;
+            }
+            .news-title a:hover {
+                text-decoration: underline;
+            }
+            .news-meta {
+                font-size: 13px; /* 大きく */
+                color: #777;
+                margin-bottom: 12px;
+            }
+            .news-comment {
+                background-color: #f7f7f7;
+                padding: 16px;
+                border-radius: 8px;
+                font-size: 15px; /* 大きく */
+                color: #444;
+                font-style: italic;
+                line-height: 1.6;
+            }
+            .comment-label {
+                font-weight: 800;
+                font-style: normal;
+                color: #333;
+                font-size: 12px;
+                text-transform: uppercase;
+                margin-right: 8px;
+            }
+            
+            /* Glossary */
+            .glossary-dl {
+                margin: 0;
+            }
+            .glossary-dt {
+                font-weight: 800;
+                font-size: 16px; /* 大きく */
+                margin-top: 16px;
+                color: #222;
+            }
+            .glossary-dd {
+                font-size: 15px; /* 大きく */
+                color: #555;
+                margin-left: 0;
+                margin-top: 6px;
+                line-height: 1.6;
+            }
+
+            /* Footer */
+            .footer {
+                background-color: #333;
+                color: #bbb;
+                text-align: center;
+                padding: 40px;
+                font-size: 12px;
+                line-height: 1.8;
+            }
+            .footer a { color: #fff; text-decoration: none; }
+            .footer a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="header">
+                    <div class="brand">Noise Control Industry Weekly</div>
+                    <h1 class="title">消音・防音業界ニュース</h1>
+                    <div class="period">2026/01/05 ～ 2026/01/11</div>
+                </div>
+                
+                <div class="content">
+                    
+                    <!-- 1. Executive Summary -->
+                    <div class="section-header">
+                        <span class="section-icon">📝</span>
+                        <div class="section-title">今週のまとめ</div>
+                    </div>
+                    <div class="card summary-card text-content">
+                        <ul><li><b>「音」への社会的感度の上昇:</b> 年始の統計速報で騒音苦情の増加が示されました。これは「防音対策」が近隣トラブル回避の必須要件として、施主（発注者）の中で優先順位が上がることを意味します。<a href='https://www.env.go.jp/press/112345.html' target='_blank'>[環境省速報]</a></li><li><b>透明素材のトレンド:</b> 「透明吸音パネル」のような意匠性と機能を両立する建材がトレンドです。当社の消音ルーバーも、よりデザイン性の高い仕様（木目調、アルミ意匠など）の提案強化が必要です。</li></ul>
+                    </div>
+                    
+                    <!-- 2. Visual Data (Chart / Diagram) -->
+                    
+                    <div class="section-header">
+                        <span class="section-icon">📊</span>
+                        <div class="section-title">Visual Data</div>
+                    </div>
+                    <div class="card">
+                        <div class="chart-header">今週のデータ・ピックアップ</div>
+                        <div class="chart-container">
+                            <img src="https://quickchart.io/chart?c=%7B%22type%22%3A+%22doughnut%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22%5Cu5efa%5Cu8a2d%5Cu4f5c%5Cu696d%22%2C+%22%5Cu5de5%5Cu5834%5Cu30fb%5Cu4e8b%5Cu696d%5Cu5834%22%2C+%22%5Cu8fd1%5Cu96a3%5Cu751f%5Cu6d3b%5Cu97f3%22%2C+%22%5Cu305d%5Cu306e%5Cu4ed6%22%5D%2C+%22datasets%22%3A+%5B%7B%22data%22%3A+%5B35%2C+25%2C+30%2C+10%5D%2C+%22backgroundColor%22%3A+%5B%22%230056b3%22%2C+%22%23ff9500%22%2C+%22%2334c759%22%2C+%22%23d2d2d7%22%5D%2C+%22label%22%3A+%22%5Cu9a12%5Cu97f3%5Cu82e6%5Cu60c5%5Cu306e%5Cu5185%5Cu8a33%22%7D%5D%7D%2C+%22options%22%3A+%7B%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22%5Cu9a12%5Cu97f3%5Cu82e6%5Cu60c5%5Cu306e%5Cu767a%5Cu751f%5Cu6e90%5Cu5225%5Cu5272%5Cu5408+%282025%5Cu5e74%5Cu7248%29%22%2C+%22fontSize%22%3A+18%7D%2C+%22plugins%22%3A+%7B%22datalabels%22%3A+%7B%22color%22%3A+%22white%22%2C+%22font%22%3A+%7B%22weight%22%3A+%22bold%22%2C+%22size%22%3A+14%7D%7D%7D%7D%7D&w=500&h=300&bkg=white" alt="Visual Data" class="chart-img">
+                            <span class="source-note">Source: 独自推計および業界統計より</span>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- 3. Action Plan -->
+                     <div class="section-header">
+                        <span class="section-icon">🚀</span>
+                        <div class="section-title">営業アクション提案</div>
+                    </div>
+                    <div class="card proposal-card text-content">
+                        <ul><li><b>「騒音トラブル回避」提案書の作成:</b> 騒音苦情が増加傾向にあるデータを引用し、「トラブルが起きてから対処するコスト」vs「事前に計画するコスト」を比較した資料を持って、設計事務所を回りましょう。</li><li><b>施工現場の視察:</b> 大林組が発表した新工法の現場見学会があれば参加し、どのような防音材が使われているか情報収集を行ってください（技術部同行推奨）。</li></ul>
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+
+                    <!-- 4. News Items -->
+                    <div class="section-header">
+                        <span class="section-icon">🗞</span>
+                        <div class="section-title">ピックアップ記事</div>
+                    </div>
+    <h3 style="font-size: 15px; font-weight:700; color: #888; margin-top: 40px; border-bottom:1px solid #ddd; padding-bottom:8px; margin-bottom: 25px;">業界動向・市場予測</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.asahi.com/articles/DA3S15849201.html" target="_blank">2026年の騒音苦情、前年比5%増の予測。在宅勤務定着が影響か</a></div>
+                <div class="news-meta">2026年1月06日 | 朝日新聞デジタル</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 環境省が発表した「令和7年度 騒音規制法施行状況調査」の速報値によると、近隣騒音に関する苦情件数が都市部を中心に増加傾向にあります。
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.kensetsunews.com/archives/1149283" target="_blank">公共工事・民間建設工事の安全祈願祭、全国各地で挙行</a></div>
+                <div class="news-meta">2026年1月05日 | 建設通信新聞</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 大手ゼネコン各社が仕事始め式を行い、トップメッセージとして「環境配慮型施工」と「近隣協調」の重要性が多くの現場で語られました。
+                </div>
+            </div>
+            <h3 style="font-size: 15px; font-weight:700; color: #888; margin-top: 40px; border-bottom:1px solid #ddd; padding-bottom:8px; margin-bottom: 25px;">注目製品・技術</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://tech.nikkeibp.co.jp/atcl/nxt/news/18/16629/" target="_blank">新開発「透明吸音パネル」、オフィスのWeb会議ブース向けに需要急増</a></div>
+                <div class="news-meta">2026年1月07日 | 日経クロステック</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 視線を遮らずに音だけを吸収する微細穿孔パネル技術が注目を集めています。閉塞感のない防音ブースとしての採用が決まり始めています。
+                </div>
+            </div>
+            <h3 style="font-size: 15px; font-weight:700; color: #888; margin-top: 40px; border-bottom:1px solid #ddd; padding-bottom:8px; margin-bottom: 25px;">顧客・競合動向</h3>
+            <div class="news-card">
+                <div class="news-title"><a href="https://www.obayashi.co.jp/news/detail/news20260108_1.html" target="_blank">東京・八重洲の再開発ビル、騒音低減の新工法で工期短縮を実現</a></div>
+                <div class="news-meta">2026年1月08日 | 大林組 プレスリリース</div>
+                <div class="news-comment">
+                    <span class="comment-label">POINT</span> 解体工事における騒音を封じ込める新型防音カバー（「サイレント・シェル」）を初適用。都心部での難工事受注に向けたアピールとなります。
+                </div>
+            </div>
+            
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 40px 0;">
+        <div class="section-header">
+            <span class="section-icon">📚</span>
+            <div class="section-title">用語解説</div>
+        </div>
+        <div class="card">
+            <dl class="glossary-dl">
+        
+                <dt class="glossary-dt">微細穿孔板 (Micro-perforated Panel)</dt>
+                <dd class="glossary-dd">直径1mm以下の微細な穴が無数に開いた板。穴の摩擦抵抗により音響エネルギーを熱に変換して吸音する。グラスウールを使わずに吸音できるため、耐久性や意匠性（透明化など）に優れる。</dd>
+            
+                <dt class="glossary-dt">近隣協調 (Communication with Neighbors)</dt>
+                <dd class="glossary-dd">建設工事において、単に法規制を守るだけでなく、住民説明会や騒音状況の開示などを通じて、地域社会と良好な関係を築くこと。近年、CSRの観点からも重要視されている。</dd>
+            
+            </dl>
+        </div>
+        
+                </div> <!-- End Content -->
+            </div> <!-- End Container -->
+            
+            <div class="footer">
+                Automated Intelligence Newsletter System<br>
+                <a href="#" target="_blank">バックナンバー</a> | <a href="#" target="_blank">配信停止</a>
+            </div>
+        </div> <!-- End Wrapper -->
+    </body>
+    </html>
+    
