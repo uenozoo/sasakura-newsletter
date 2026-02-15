@@ -3,4 +3,4 @@ pyyaml
 typing_extensions
 python-dateutil
 requests
-google-generativeai
+google-genai
