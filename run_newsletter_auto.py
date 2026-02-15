@@ -34,8 +34,6 @@ def configure_gemini():
         
         print(f"利用可能モデル一覧: {available_models}")
 
-        # Selection Logic: Prioritize Pro > Flash, Newer > Older
-        # 1. Try exact matches for known high-end models
         priority_list = [
             'gemini-2.0-pro-exp', 'gemini-2.0-flash-exp', 
             'gemini-1.5-pro-latest', 'gemini-1.5-pro',
@@ -48,13 +46,11 @@ def configure_gemini():
                 print(f"推奨モデルを選択しました: {candidate}")
                 return genai.GenerativeModel(candidate)
         
-        # 2. If no priority match, pick the first one containing 'gemini'
         for model in available_models:
             if 'gemini' in model:
                 print(f"代替モデルを選択しました: {model}")
                 return genai.GenerativeModel(model)
 
-        # 3. Last resort
         if available_models:
             print(f"モデルを選択しました: {available_models[0]}")
             return genai.GenerativeModel(available_models[0])
@@ -66,14 +62,26 @@ def configure_gemini():
     
     return None
 
+def extract_json(text):
+    """Encapsulated JSON extraction logic"""
+    try:
+        # Try finding the first JSON object
+        match = re.search(r'\{.*\}', text, re.DOTALL)
+        if match:
+            return json.loads(match.group())
+        return None
+    except json.JSONDecodeError:
+        return None
+
 def analyze_news_with_gemini(model, item, category):
     if not model:
+        # Fallback if no model configured
         return {
             "summary": item.get('snippet', '')[:80] + "...",
             "detail": item.get('snippet', '詳細なし'),
-            "reasoning": "（AI未接続のため自動選定）",
-            "sales_talk": "この記事をきっかけに顧客へアプローチしてみましょう。",
-            "sales_hint": "関連する課題がないかヒアリングしてください。"
+            "reasoning": "（AI未接続）",
+            "sales_talk": f"{item['title']}について顧客と話をしてみましょう。",
+            "sales_hint": "業界動向としての紹介が有効です。"
         }
     
     prompt = f"""
@@ -86,36 +94,59 @@ def analyze_news_with_gemini(model, item, category):
     抜粋: {item.get('snippet', '')}
     カテゴリ: {category}
 
-    【出力フォーマット（JSON形式想定）】
-    Summary: 記事の核心（40文字以内）
-    Detail: 詳細解説（200文字程度）
-    Reasoning: なぜ営業にとって重要か（100文字以内）
-    SalesTalk: 具体的な「呼び水トーク」（1つ）
-    SalesHint: 誰にどう提案すべきかのアドバイス
+    【重要】
+    必ず「有効なJSON形式」で出力してください。Markdownコードブロック（```json）は不要です。
+
+    {{
+        "summary": "記事の核心（40文字以内）",
+        "detail": "詳細解説（200文字程度）",
+        "reasoning": "なぜ営業にとって重要か（100文字以内）",
+        "sales_talk": "具体的な「呼び水トーク」（1つ）",
+        "sales_hint": "誰にどう提案すべきかのアドバイス"
+    }}
     """
 
     try:
         response = model.generate_content(prompt)
         text = response.text
+        # DEBUG LOG
+        print(f"[DEBUG] News Analysis Raw ({item['title'][:10]}...): {text[:100]}...")
+
+        parsed = extract_json(text)
         
-        parsed = {}
-        for line in text.split('\n'):
-            line = line.strip()
-            if line.startswith("Summary:"): parsed['summary'] = line.replace("Summary:", "").strip()
-            elif line.startswith("Detail:"): parsed['detail'] = line.replace("Detail:", "").strip()
-            elif line.startswith("Reasoning:"): parsed['reasoning'] = line.replace("Reasoning:", "").strip()
-            elif line.startswith("SalesTalk:"): parsed['sales_talk'] = line.replace("SalesTalk:", "").strip()
-            elif line.startswith("SalesHint:"): parsed['sales_hint'] = line.replace("SalesHint:", "").strip()
+        if not parsed:
+            # Fallback Parsing if JSON fails
+            print(f"[WARN] JSON parsing failed, attempting Regex fallback for {item['title']}")
+            parsed = {}
+            patterns = {
+                'summary': r'(?:summary|要約)[:："\s]+(.*?)(?=",|\n)',
+                'detail': r'(?:detail|詳細)[:："\s]+(.*?)(?=",|\n)',
+                'reasoning': r'(?:reasoning|選定理由)[:："\s]+(.*?)(?=",|\n)',
+                'sales_talk': r'(?:sales_talk|商談トーク)[:："\s]+(.*?)(?=",|\n)',
+                'sales_hint': r'(?:sales_hint|営業ヒント)[:："\s]+(.*?)(?=",|\n|"\}\s*$)'
+            }
+            for key, pattern in patterns.items():
+                match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+                if match:
+                    parsed[key] = match.group(1).strip().strip('"').strip(',')
         
-        if not parsed.get('summary'): parsed['summary'] = item['title']
-        return parsed
+        # Ensure minimum fields exist
+        fallback_data = {
+            "summary": item['title'],
+            "detail": item.get('snippet', '詳細生成失敗'),
+            "reasoning": "詳細情報を確認してください。",
+            "sales_talk": "話題のきっかけとして活用可能です。",
+            "sales_hint": "顧客へ情報提供を行ってください。"
+        }
+        
+        return {**fallback_data, **parsed}
 
     except Exception as e:
-        print(f"AI Generation Error ({item['title']}): {e}")
+        print(f"[ERROR] AI Generation Error ({item['title']}): {e}")
         return {
-            "summary": "AI生成エラー",
-            "detail": "情報の生成に失敗しました。",
-            "reasoning": "ー",
+            "summary": item['title'],
+            "detail": f"AI生成エラー: {str(e)}",
+            "reasoning": "エラー",
             "sales_talk": "ー",
             "sales_hint": "ー"
         }
@@ -123,8 +154,8 @@ def analyze_news_with_gemini(model, item, category):
 def generate_overall_insight(model, news_context):
     if not model:
         return {
-            "summary": {"text": "AI未接続のため生成なし", "reasoning": "", "evidence": ""},
-            "proposal": {"text": "AI未接続のため生成なし", "reasoning": "", "evidence": ""}
+            "summary": {"text": "AI未接続", "reasoning": "", "evidence": ""},
+            "proposal": {"text": "AI未接続", "reasoning": "", "evidence": ""}
         }
     
     prompt = f"""
@@ -133,22 +164,25 @@ def generate_overall_insight(model, news_context):
     【ニュース一覧】
     {news_context}
 
-    【出力形式】
-    SummaryText: 今週のトレンド（箇条書きHTML <ul><li>...</li></ul>）
-    SummaryReasoning: その理由
-    ProposalText: 具体的な行動指針（箇条書きHTML <ul><li>...</li></ul>）
-    ProposalReasoning: その意図
+    【重要】
+    必ず「有効なJSON形式」で出力してください。
+
+    {{
+        "summary_text": "今週のトレンド（箇条書きHTML <ul><li>...</li></ul>）",
+        "summary_reasoning": "その理由",
+        "proposal_text": "具体的な行動指針（箇条書きHTML <ul><li>...</li></ul>）",
+        "proposal_reasoning": "その意図"
+    }}
     """
     
     try:
         response = model.generate_content(prompt)
         text = response.text
-        parsed = {}
-        for line in text.split('\n'):
-            if line.startswith("SummaryText:"): parsed['summary_text'] = line.replace("SummaryText:", "").strip()
-            elif line.startswith("SummaryReasoning:"): parsed['summary_reasoning'] = line.replace("SummaryReasoning:", "").strip()
-            elif line.startswith("ProposalText:"): parsed['proposal_text'] = line.replace("ProposalText:", "").strip()
-            elif line.startswith("ProposalReasoning:"): parsed['proposal_reasoning'] = line.replace("ProposalReasoning:", "").strip()
+        parsed = extract_json(text)
+
+        if not parsed:
+            print("[WARN] Overall Insight JSON parsing failed.")
+            parsed = {}
 
         return {
             "summary": {
@@ -163,7 +197,7 @@ def generate_overall_insight(model, news_context):
             }
         }
     except Exception as e:
-        print(f"Overall Insight Error: {e}")
+        print(f"[ERROR] Overall Insight Error: {e}")
         return {
             "summary": {"text": "生成エラー", "reasoning": "", "evidence": ""},
             "proposal": {"text": "生成エラー", "reasoning": "", "evidence": ""}
@@ -174,25 +208,23 @@ def generate_glossary(model, news_context):
     
     prompt = f"""
     以下のニュース内で使用されている「技術用語」や「業界用語」から、営業担当者が知っておくべきものを最大3つ選び、解説してください。
-    必ずJSON形式で出力してください。
+    
+    【重要】
+    必ず「有効なJSON形式」で出力してください。
+    キーは用語、値は解説です。
 
-    【ニュース】
-    {news_context}
-
-    【JSON形式】
     {{
         "用語A": "解説A",
         "用語B": "解説B"
     }}
+
+    【ニュース】
+    {news_context}
     """
     try:
         response = model.generate_content(prompt)
         text = response.text
-        # Extract JSON part if mixed with text
-        json_match = re.search(r'\{.*\}', text, re.DOTALL)
-        if json_match:
-            return json.loads(json_match.group())
-        return None
+        return extract_json(text)
     except Exception as e:
         print(f"Glossary Error: {e}")
         return None
@@ -200,11 +232,25 @@ def generate_glossary(model, news_context):
 def generate_chart_data(model, news_context):
     if not model: return None
 
+    # Static fallback data
+    fallback_chart = {
+        "title": "データセンター市場動向(サンプル)",
+        "source": "AI生成エラーのためサンプル表示",
+        "reasoning": "エラー発生時のプレースホルダー",
+        "config": {
+            "type": "bar",
+            "data": {
+                "labels": ["2024", "2025", "2026"],
+                "datasets": [{"label": "市場規模予測", "data": [100, 120, 150]}]
+            },
+            "options": {"title": {"display": True, "text": "サンプルチャート"}}
+        }
+    }
+
     prompt = f"""
     以下のニュース内容から、営業担当者が顧客に見せるのに適した「架空のグラフデータ」を1つ作成してください。
-    QuickChart.io のJSON形式の設定オブジェクトを出力してください。
-    
-    テーマ例: データセンター電力消費予測、騒音規制の推移、市場規模など（ニュース内容に関連すること）
+    QuickChart.io (Chart.js v2.9.4互換) のJSON形式の設定オブジェクトを出力してください。
+    必ず 'type', 'data', 'options' を含めてください。
 
     【JSON形式】
     {{
@@ -213,25 +259,40 @@ def generate_chart_data(model, news_context):
         "reasoning": "なぜこのグラフが必要か",
         "config": {{
             "type": "bar",
-            "data": {{ ...Labels and Datasets... }},
-            "options": {{ ... }}
+            "data": {{ 
+                "labels": ["Label1", "Label2"], 
+                "datasets": [{{ "label": "Dataset1", "data": [10, 20] }}] 
+            }},
+            "options": {{
+                "title": {{ "display": true, "text": "Chart Title" }}
+            }}
         }}
     }}
     """
     try:
         response = model.generate_content(prompt)
         text = response.text
-        json_match = re.search(r'\{.*\}', text, re.DOTALL)
-        if json_match:
-            data = json.loads(json_match.group())
-            # Ensure config is dict not string
+        data = extract_json(text)
+        
+        if data:
+            # Normalization
             if isinstance(data.get('config'), str):
-                data['config'] = json.loads(data['config'])
-            return data
-        return None
+                try:
+                    data['config'] = json.loads(data['config'])
+                except:
+                    pass
+            
+            # Validation
+            if 'config' in data and isinstance(data['config'], dict):
+                if 'options' not in data['config']:
+                    data['config']['options'] = {}
+                return data
+
+        print("[WARN] Chart JSON invalid or missing.")
+        return fallback_chart
     except Exception as e:
         print(f"Chart Error: {e}")
-        return None
+        return fallback_chart
 
 def main():
     parser = argparse.ArgumentParser()
