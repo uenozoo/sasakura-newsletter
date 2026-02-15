@@ -22,7 +22,49 @@ def configure_gemini():
         print("警告: GEMINI_API_KEY が設定されていません。AI生成機能はスキップされます。")
         return None
     genai.configure(api_key=api_key)
-    return genai.GenerativeModel('gemini-3-flash')
+    
+    # Dynamically select the best model
+    try:
+        print("利用可能なモデルを検索中...")
+        available_models = []
+        for m in genai.list_models():
+            if 'generateContent' in m.supported_generation_methods:
+                model_name = m.name.replace('models/', '')
+                available_models.append(model_name)
+        
+        print(f"利用可能モデル一覧: {available_models}")
+
+        # Selection Logic: Prioritize Pro > Flash, Newer > Older
+        # 1. Try exact matches for known high-end models
+        priority_list = [
+            'gemini-2.0-pro-exp', 'gemini-2.0-flash-exp', 
+            'gemini-1.5-pro-latest', 'gemini-1.5-pro',
+            'gemini-1.5-flash-latest', 'gemini-1.5-flash',
+            'gemini-pro'
+        ]
+        
+        for candidate in priority_list:
+            if candidate in available_models:
+                print(f"推奨モデルを選択しました: {candidate}")
+                return genai.GenerativeModel(candidate)
+        
+        # 2. If no priority match, pick the first one containing 'gemini'
+        for model in available_models:
+            if 'gemini' in model:
+                print(f"代替モデルを選択しました: {model}")
+                return genai.GenerativeModel(model)
+
+        # 3. Last resort
+        if available_models:
+            print(f"モデルを選択しました: {available_models[0]}")
+            return genai.GenerativeModel(available_models[0])
+            
+    except Exception as e:
+        print(f"モデル一覧取得エラー: {e}")
+        print("デフォルトモデル(gemini-pro)を試行します。")
+        return genai.GenerativeModel('gemini-pro')
+    
+    return None
 
 def analyze_news_with_gemini(model, item, category):
     if not model:
